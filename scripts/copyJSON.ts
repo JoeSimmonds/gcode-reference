@@ -50,7 +50,7 @@ Object.values(MachineTypes).forEach(type => {
 
     process.stdout.write('Copying Variant G/M Files...\n');
     files.forEach(file => {
-        if (fs.statSync(path.join(jpath, type, 'variants', file)).isDirectory() || /^..*/.test(file)) {
+        if (fs.statSync(path.join(jpath, type, 'variants', file)).isDirectory() || /^\..*/.test(file)) {
             return;
         }
 
