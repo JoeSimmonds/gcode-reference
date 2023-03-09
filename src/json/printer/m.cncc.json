@@ -5,17 +5,17 @@
     "title": "M Code 3D Printer Reference",
     "description": "M-Code Listing for 3D Printers",
     "codes": {
-        "M0": {
+        "M00": {
             "category": "other",
             "shortDesc": "Stop or Unconditional Stop",
             "modal": true
         },
-        "M1": {
+        "M01": {
             "category": "other",
             "shortDesc": "Sleep or Conditional Stop",
             "modal": true
         },
-        "M2": {
+        "M02": {
             "category": "mcode",
             "shortDesc": "Program End",
             "modal": true

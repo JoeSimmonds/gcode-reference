@@ -21,6 +21,7 @@ export enum Variants {
     Okuma = 'okuma',
     Snapmaker = 'snpmaker',
     Tormach = 'tormach',
+    Marlin = 'marlin',
 }
 
 export type Variant = Variants;

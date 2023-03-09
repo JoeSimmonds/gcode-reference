@@ -5,7 +5,7 @@
 'use strict';
 
 import { expect } from 'chai';
-import { CodeTypes, GReference, MachineTypes, Variants } from '../src';
+import { Categories, Code, CodeTypes, GReference, MachineTypes, Parameters, Variants } from '../src';
 import { loadJSON } from '../src/json';
 
 describe('GReference Object', () => {
@@ -104,6 +104,43 @@ describe('GReference Object', () => {
             it('returns undefined for a code w/o parameters.', () => {
                 const g = new GReference();
                 expect(g.getParams('G17')).to.be.undefined;
+            });
+        });
+
+        /*
+            category: Category;
+    modal?: boolean;
+    shortDesc: string;
+    desc?: string;
+    parameters: Parameters;
+    */
+
+        describe('Verifying Marlin code loading...', () => {
+            it('returns the correct code for a newly defined code', () => {
+                const g = new GReference();
+                g.setType(MachineTypes.Printer);
+                g.setVariant(Variants.Marlin);
+                expect(g.get('M105')).to.deep.equal({
+                    category: 'mcode',
+                    shortDesc: 'Report Temperatures',
+                    desc: 'Request a temperature report to be sent to the host as soon as possible.',
+                    parameters: {
+                        R: {
+                            shortDesc: 'Include Redundant',
+                            desc: 'Include the Redundant temperature sensor (if any)',
+                            optional: true,
+                        },
+                        T: {
+                            shortDesc: 'Hotend index',
+                            optional: true,
+                        },
+                    },
+                });
+            });
+
+            it('returns undefined for a removed code', () => {
+                const g = new GReference(MachineTypes.Printer, Variants.Marlin);
+                expect(g.get('M2')).to.be.undefined;
             });
         });
 
