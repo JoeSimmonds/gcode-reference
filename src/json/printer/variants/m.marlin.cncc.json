@@ -1,52 +1,4944 @@
 {
-    "$schema": "https://appliedengdesign.github.io/cnccodes-json-schema/draft/2022-07/schema",
-    "type": "mcode",
-    "machineType": "printer",
-    "title": "M Code Marlin Reference",
-    "variant": {
-        "name": "marlin",
-        "remove": [
-            "M02"
-        ]
-    },
-    "description": "M-code liosting for Marlin firmware 3d Printers",
-    "codes": {
-        "M03": {
-            "category": "mcode",
-            "shortDesc": "Spindle CW/Laser On",
-            "desc": "Wait for moves to complete, then set the spindle speed (clockwise) or laser power.",
-            "parameters": {
-                "I": {
-                    "shortDesc": "Inline mode ON / OFF.",
-                    "optional": true
-                },
-                "O": {
-                    "shortDesc": "Spindle speed or laser power",
-                    "desc": "Spindle speed or laser power in PWM 0-255 value range",
-                    "optional": true
-                },
-                "S": {
-                    "shortDesc": "Spindle speed or laser power",
-                    "desc": "Spindle speed or laser power in the configured value range",
-                    "optional": true
-                }
-            }
-        },
-        "M105": {
-            "category": "mcode",
-            "shortDesc": "Report Temperatures",
-            "desc": "Request a temperature report to be sent to the host as soon as possible.",
-            "parameters": {
-                "T": {
-                    "optional": true,
-                    "shortDesc": "Hotend index"
-                },
-                "R": {
-                    "desc": "Include the Redundant temperature sensor (if any)",
-                    "optional": true,
-                    "shortDesc": "Include Redundant"
-                }
-            }
-        }
+  "G00": {
+    "shortDesc": "Linear Move",
+    "category": "motion",
+    "desc": "The G0 and G1 commands add a linear move to the queue to be performed after all previous moves are completed. These commands yield control back to the command parser as soon as the move is queued, but they may delay the command parser while awaiting a slot in the queue.",
+    "parameters": {
+      "E": {
+        "shortDesc": "An absolute or relative coordinate on the E (extruder) axis (in current units). The E axis describes the position of the filament in terms of input to the extruder feeder.",
+        "optional": true
+      },
+      "F": {
+        "shortDesc": "The maximum movement rate of the move between the start and end point. The feedrate set here applies to subsequent moves that omit this parameter.",
+        "optional": true
+      },
+      "S": {
+        "shortDesc": "Set the laser power for the move.",
+        "optional": true
+      },
+      "X": {
+        "shortDesc": "An absolute or relative coordinate on the X axis (in current units).",
+        "optional": true
+      },
+      "Y": {
+        "shortDesc": "An absolute or relative coordinate on the Y axis (in current units).",
+        "optional": true
+      },
+      "Z": {
+        "shortDesc": "An absolute or relative coordinate on the Z axis (in current units).",
+        "optional": true
+      }
     }
+  },
+  "G01": {
+    "shortDesc": "Linear Move",
+    "category": "motion",
+    "desc": "The G0 and G1 commands add a linear move to the queue to be performed after all previous moves are completed. These commands yield control back to the command parser as soon as the move is queued, but they may delay the command parser while awaiting a slot in the queue.",
+    "parameters": {
+      "E": {
+        "shortDesc": "An absolute or relative coordinate on the E (extruder) axis (in current units). The E axis describes the position of the filament in terms of input to the extruder feeder.",
+        "optional": true
+      },
+      "F": {
+        "shortDesc": "The maximum movement rate of the move between the start and end point. The feedrate set here applies to subsequent moves that omit this parameter.",
+        "optional": true
+      },
+      "S": {
+        "shortDesc": "Set the laser power for the move.",
+        "optional": true
+      },
+      "X": {
+        "shortDesc": "An absolute or relative coordinate on the X axis (in current units).",
+        "optional": true
+      },
+      "Y": {
+        "shortDesc": "An absolute or relative coordinate on the Y axis (in current units).",
+        "optional": true
+      },
+      "Z": {
+        "shortDesc": "An absolute or relative coordinate on the Z axis (in current units).",
+        "optional": true
+      }
+    }
+  },
+  "G02": {
+    "shortDesc": "Arc or Circle Move",
+    "category": "motion",
+    "desc": "G2 adds a clockwise arc move to the planner; G3 adds a counter-clockwise arc. An arc move starts at the current position and ends at the given XYZ, pivoting around a center-point offset given by I and J or R.",
+    "parameters": {
+      "E": {
+        "shortDesc": "The amount to extrude between the start point and end point",
+        "optional": true
+      },
+      "F": {
+        "shortDesc": "The maximum rate of the move between the start and end point",
+        "optional": true
+      },
+      "I": {
+        "shortDesc": "An offset from the current X position to use as the arc center",
+        "optional": false
+      },
+      "J": {
+        "shortDesc": "An offset from the current Y position to use as the arc center",
+        "optional": false
+      },
+      "P": {
+        "shortDesc": "Specify complete circles. (Requires ARC_P_CIRCLES)",
+        "optional": true
+      },
+      "R": {
+        "shortDesc": "A radius from the current XY position to use as the arc center",
+        "optional": false
+      },
+      "S": {
+        "shortDesc": "Set the Laser power for the move.",
+        "optional": true
+      },
+      "X": {
+        "shortDesc": "A coordinate on the X axis",
+        "optional": true
+      },
+      "Y": {
+        "shortDesc": "A coordinate on the Y axis",
+        "optional": true
+      },
+      "Z": {
+        "shortDesc": "A coordinate on the Z axis",
+        "optional": true
+      }
+    }
+  },
+  "G03": {
+    "shortDesc": "Arc or Circle Move",
+    "category": "motion",
+    "desc": "G2 adds a clockwise arc move to the planner; G3 adds a counter-clockwise arc. An arc move starts at the current position and ends at the given XYZ, pivoting around a center-point offset given by I and J or R.",
+    "parameters": {
+      "E": {
+        "shortDesc": "The amount to extrude between the start point and end point",
+        "optional": true
+      },
+      "F": {
+        "shortDesc": "The maximum rate of the move between the start and end point",
+        "optional": true
+      },
+      "I": {
+        "shortDesc": "An offset from the current X position to use as the arc center",
+        "optional": false
+      },
+      "J": {
+        "shortDesc": "An offset from the current Y position to use as the arc center",
+        "optional": false
+      },
+      "P": {
+        "shortDesc": "Specify complete circles. (Requires ARC_P_CIRCLES)",
+        "optional": true
+      },
+      "R": {
+        "shortDesc": "A radius from the current XY position to use as the arc center",
+        "optional": false
+      },
+      "S": {
+        "shortDesc": "Set the Laser power for the move.",
+        "optional": true
+      },
+      "X": {
+        "shortDesc": "A coordinate on the X axis",
+        "optional": true
+      },
+      "Y": {
+        "shortDesc": "A coordinate on the Y axis",
+        "optional": true
+      },
+      "Z": {
+        "shortDesc": "A coordinate on the Z axis",
+        "optional": true
+      }
+    }
+  },
+  "G4": {
+    "shortDesc": "Dwell",
+    "category": "motion",
+    "desc": "Dwell pauses the command queue and waits for a period of time.",
+    "parameters": {
+      "P": {
+        "shortDesc": "Amount of time to dwell",
+        "optional": true
+      },
+      "S": {
+        "shortDesc": "Amount of time to dwell",
+        "optional": true
+      }
+    }
+  },
+  "G5": {
+    "shortDesc": "Bézier cubic spline",
+    "category": "motion",
+    "desc": "G5 creates a cubic B-spline in the XY plane with the X and Y axes only. P and Q parameters are required. I and J are required for the first G5 command in a series. For subsequent G5 commands, either both I and J must be specified, or neither. If I and J are unspecified, the starting direction of the cubic will automatically match the ending direction of the previous cubic (as if I and J are the negation of the previous P and Q).",
+    "parameters": {
+      "E": {
+        "shortDesc": "The length of filament to feed into the extruder between the start and end point",
+        "optional": true
+      },
+      "F": {
+        "shortDesc": "The maximum feedrate of the move between the start and end point (in current units per second). This value applies to all subsequent moves.",
+        "optional": true
+      },
+      "I": {
+        "shortDesc": "Offset from the X start point to first control point",
+        "optional": false
+      },
+      "J": {
+        "shortDesc": "Offset from the Y start point to first control point",
+        "optional": false
+      },
+      "P": {
+        "shortDesc": "Offset from the X end point to second control point",
+        "optional": false
+      },
+      "Q": {
+        "shortDesc": "Offset from the Y end point to the second control point",
+        "optional": false
+      },
+      "S": {
+        "shortDesc": "Set the Laser power for the move.",
+        "optional": true
+      },
+      "X": {
+        "shortDesc": "A destination coordinate on the X axis",
+        "optional": false
+      },
+      "Y": {
+        "shortDesc": "A destination coordinate on the Y axis",
+        "optional": false
+      }
+    }
+  },
+  "G6": {
+    "shortDesc": "Direct Stepper Move",
+    "category": "motion",
+    "desc": "Direct Stepping allows a host device to issue direct stepper movements in binary format, pre-written by the host device to a page in the device RAM.",
+    "parameters": {
+      "E": {
+        "shortDesc": "1 for positive, 0 for negative. Last value is cached for future invocations. Not used for directional formats.",
+        "optional": true
+      },
+      "I": {
+        "shortDesc": "Set page index",
+        "optional": true
+      },
+      "R": {
+        "shortDesc": "Step rate per second. Last value is cached for future invocations.",
+        "optional": true
+      },
+      "S": {
+        "shortDesc": "Number of steps to take. Defaults to max steps.",
+        "optional": true
+      },
+      "X": {
+        "shortDesc": "1 for positive, 0 for negative. Last value is cached for future invocations. Not used for directional formats.",
+        "optional": true
+      },
+      "Y": {
+        "shortDesc": "1 for positive, 0 for negative. Last value is cached for future invocations. Not used for directional formats.",
+        "optional": true
+      },
+      "Z": {
+        "shortDesc": "1 for positive, 0 for negative. Last value is cached for future invocations. Not used for directional formats.",
+        "optional": true
+      }
+    }
+  },
+  "G10": {
+    "shortDesc": "Retract",
+    "category": "motion",
+    "desc": "Retract the filament according to settings of M207.",
+    "parameters": {
+      "S": {
+        "shortDesc": "Use G10 S1 to do a swap retraction, before changing extruders. The subsequent G11 (after tool change) will do a swap recover. (Requires EXTRUDERS > 1)",
+        "optional": true
+      }
+    }
+  },
+  "G11": {
+    "shortDesc": "Recover",
+    "category": "motion",
+    "desc": "Unretract (i.e., recover, prime) the filament according to settings of M208.",
+    "parameters": {}
+  },
+  "G12": {
+    "shortDesc": "Clean the Nozzle",
+    "category": "nozzle",
+    "desc": "Start the nozzle cleaning process. Three types of cleaning patterns are supported: straight strokes, zigzags and circles. This feature requires a dedicated cleaning area on or outside the bed, but within reach of the nozzle. The pattern may be repeated as many times as desired.",
+    "parameters": {
+      "P": {
+        "shortDesc": "Pattern style selection",
+        "optional": true
+      },
+      "R": {
+        "shortDesc": "Radius of nozzle cleaning circle",
+        "optional": true
+      },
+      "S": {
+        "shortDesc": "Number of repetitions of the pattern",
+        "optional": true
+      },
+      "T": {
+        "shortDesc": "Number of triangles in the zigzag pattern",
+        "optional": true
+      },
+      "X": {
+        "shortDesc": "Include X motion when cleaning with limited axes. (Leave out X, Y, and Z for non-limited cleaning.)",
+        "optional": true
+      },
+      "Y": {
+        "shortDesc": "Include Y motion when cleaning with limited axes. (Leave out X, Y, and Z for non-limited cleaning.)",
+        "optional": true
+      },
+      "Z": {
+        "shortDesc": "Include Z motion when cleaning with limited axes. (Leave out X, Y, and Z for non-limited cleaning.)",
+        "optional": true
+      }
+    }
+  },
+  "G17": {
+    "shortDesc": "CNC Workspace Planes",
+    "category": "geometry",
+    "desc": "Select workspace plane XY, ZX, or YZ. Allows G2/G3 and G5 to operate in the selected plane when CNC_WORKSPACE_PLANES is enabled.",
+    "parameters": {}
+  },
+  "G18": {
+    "shortDesc": "CNC Workspace Planes",
+    "category": "geometry",
+    "desc": "Select workspace plane XY, ZX, or YZ. Allows G2/G3 and G5 to operate in the selected plane when CNC_WORKSPACE_PLANES is enabled.",
+    "parameters": {}
+  },
+  "G19": {
+    "shortDesc": "CNC Workspace Planes",
+    "category": "geometry",
+    "desc": "Select workspace plane XY, ZX, or YZ. Allows G2/G3 and G5 to operate in the selected plane when CNC_WORKSPACE_PLANES is enabled.",
+    "parameters": {}
+  },
+  "G20": {
+    "shortDesc": "Inch Units",
+    "category": "units",
+    "desc": "Set units to inches. In this mode, all positions, offsets, rates, accelerations, etc., specified in G-code parameters are interpreted as inches.",
+    "parameters": {}
+  },
+  "G21": {
+    "shortDesc": "Millimeter Units",
+    "category": "units",
+    "desc": "Set units to millimeters. In this mode, all positions, offsets, rates, accelerations, etc., specified in G-code parameters are interpreted as millimeters.",
+    "parameters": {}
+  },
+  "G26": {
+    "shortDesc": "Mesh Validation Pattern",
+    "category": "calibration",
+    "desc": "G26 Mesh Validation Pattern is designed to be used in conjunction with mesh-based leveling to test the accuracy of the probed mesh.",
+    "parameters": {
+      "B": {
+        "shortDesc": "Bed temperature (otherwise 60°C) to use for the test print.",
+        "optional": true
+      },
+      "C": {
+        "shortDesc": "Continue with the closest point (otherwise, don’t)",
+        "optional": true
+      },
+      "D": {
+        "shortDesc": "Disable leveling compensation (otherwise, enable)",
+        "optional": true
+      },
+      "F": {
+        "shortDesc": "Filament diameter (otherwise 1.75mm)",
+        "optional": true
+      },
+      "H": {
+        "shortDesc": "Hot end temperature (otherwise 205°C) to use for the test print.",
+        "optional": true
+      },
+      "I": {
+        "shortDesc": "Material preset to use for the test print. Overrides S.",
+        "optional": true
+      },
+      "K": {
+        "shortDesc": "Keep heaters on when done",
+        "optional": true
+      },
+      "L": {
+        "shortDesc": "Layer height to use for the test",
+        "optional": true
+      },
+      "O": {
+        "shortDesc": "Ooze amount (otherwise 0.3mm). Emitted at the start of the test.",
+        "optional": true
+      },
+      "P": {
+        "shortDesc": "Prime Length",
+        "optional": true
+      },
+      "Q": {
+        "shortDesc": "Retraction multiplier. G26 retract and recover are 1.0mm and 1.2mm respectively. Both retract and recover are multiplied by this value.",
+        "optional": true
+      },
+      "R": {
+        "shortDesc": "Number of G26 Repetitions (otherwise 999)",
+        "optional": true
+      },
+      "S": {
+        "shortDesc": "Nozzle size (otherwise 0.4mm)",
+        "optional": true
+      },
+      "U": {
+        "shortDesc": "Random deviation. (U with no value, 50).",
+        "optional": true
+      },
+      "X": {
+        "shortDesc": "X position (otherwise, current X position)",
+        "optional": true
+      },
+      "Y": {
+        "shortDesc": "Y position (otherwise, current Y position)",
+        "optional": true
+      }
+    }
+  },
+  "G27": {
+    "shortDesc": "Park toolhead",
+    "category": "nozzle",
+    "desc": "Park the nozzle at a predefined XYZ position.",
+    "parameters": {
+      "P": {
+        "shortDesc": "Z axis action",
+        "optional": true
+      }
+    }
+  },
+  "G28": {
+    "shortDesc": "Auto Home",
+    "category": "calibration",
+    "desc": "When you first start up your machine it has no idea where the toolhead is positioned, so Marlin needs to use a procedure called “homing” to establish a known position. To do this it moves each axis towards one end of its track until it triggers a switch, commonly called an “endstop.” Marlin knows where the endstops are, so once all the endstops have been triggered the position is known.",
+    "parameters": {
+      "L": {
+        "shortDesc": "Flag to restore bed leveling state after homing. (default true)",
+        "optional": true
+      },
+      "O": {
+        "shortDesc": "Flag to skip homing if the position is already trusted",
+        "optional": true
+      },
+      "R": {
+        "shortDesc": "The distance to raise the nozzle before homing",
+        "optional": true
+      },
+      "X": {
+        "shortDesc": "Flag to home the X axis",
+        "optional": true
+      },
+      "Y": {
+        "shortDesc": "Flag to home the Y axis",
+        "optional": true
+      },
+      "Z": {
+        "shortDesc": "Flag to home the Z axis",
+        "optional": true
+      }
+    }
+  },
+  "G29": {
+    "shortDesc": "Bed Leveling (Unified)",
+    "category": "calibration",
+    "desc": "The Unified Bed Leveling System (UBL) provides a comprehensive set of resources to produce the best bed leveling results possible. See the full Unified Bed Leveling documentation for more details.",
+    "parameters": {
+      "A": {
+        "shortDesc": "Activate Unified Bed Leveling (i.e., M420 S1)",
+        "optional": true
+      },
+      "B": {
+        "shortDesc": "Business Card mode (P2 only)",
+        "optional": true
+      },
+      "C": {
+        "optional": true
+      },
+      "D": {
+        "shortDesc": "Disable Unified Bed Leveling (i.e., M420 S0).",
+        "optional": true
+      },
+      "E": {
+        "shortDesc": "Stow probe after probing Each point (P1 only).",
+        "optional": true
+      },
+      "F": {
+        "shortDesc": "Fade height. (UBL only! For others use M420 Z)",
+        "optional": true
+      },
+      "H": {
+        "shortDesc": "Height:",
+        "optional": true
+      },
+      "I": {
+        "shortDesc": "Invalidate a number of mesh points (default 1).",
+        "optional": true
+      },
+      "J": {
+        "shortDesc": "Grid (or 3-Point) leveling:",
+        "optional": true
+      },
+      "K": {
+        "shortDesc": "Kompare: Subtract (diff) the stored mesh with this index from the current mesh. This destructively operates on the active mesh, and the result should not be used for printing. (Requires UBL_DEVEL_DEBUGGING)",
+        "optional": true
+      },
+      "L": {
+        "shortDesc": "Load a mesh. If no index is given, load the previously-activated mesh. The given mesh index will be used for subsequent Load and Store operations.",
+        "optional": true
+      },
+      "P": {
+        "shortDesc": "Phase: The Phase commands are used for the bulk of the work to setup a Mesh. In general, you’ll start by initializing with a G29 P0 or a G29 P1 then do further refinement with additional Phases.",
+        "optional": true
+      },
+      "Q": {
+        "shortDesc": "Test Pattern. Load the specified Test Pattern to check for correct operation. This command is intended for developers and is not required for everyday bed leveling.",
+        "optional": true
+      },
+      "R": {
+        "shortDesc": "Repeat count. (Default GRID_MAX_POINTS_X * GRID_MAX_POINTS_Y).",
+        "optional": true
+      },
+      "S": {
+        "shortDesc": "Save the mesh to EEPROM in the given slot.",
+        "optional": true
+      },
+      "T": {
+        "shortDesc": "Topology: Include a Topology Map in the output.",
+        "optional": true
+      },
+      "U": {
+        "shortDesc": "Unlevel: Probe the outer perimeter to assist bed tramming. (Use with G29 P1 O)",
+        "optional": true
+      },
+      "V": {
+        "shortDesc": "Verbosity Level (0-4)",
+        "optional": true
+      },
+      "W": {
+        "shortDesc": "What?: Display valuable UBL data. (Requires UBL_DEVEL_DEBUGGING)",
+        "optional": true
+      },
+      "X": {
+        "shortDesc": "X position for all phases and commands (Default: current X)",
+        "optional": true
+      },
+      "Y": {
+        "shortDesc": "Y position for all phases and commands (Default: current Y)",
+        "optional": true
+      }
+    }
+  },
+  "G30": {
+    "shortDesc": "Single Z-Probe",
+    "category": "calibration",
+    "desc": "Do a single Z probe at a specified position. By default probe in the current position.",
+    "parameters": {
+      "C": {
+        "shortDesc": "Probe with temperature compensation enabled (PTC_PROBE, PTC_BED, PTC_HOTEND)",
+        "optional": true
+      },
+      "E": {
+        "shortDesc": "Engage the probe for each point",
+        "optional": true
+      },
+      "X": {
+        "shortDesc": "X probe position",
+        "optional": true
+      },
+      "Y": {
+        "shortDesc": "Y probe position",
+        "optional": true
+      }
+    }
+  },
+  "G31": {
+    "shortDesc": "Dock Sled",
+    "category": "calibration",
+    "desc": "Dock the Z probe sled.",
+    "parameters": {}
+  },
+  "G32": {
+    "shortDesc": "Undock Sled",
+    "category": "calibration",
+    "desc": "Undock the Z probe sled.",
+    "parameters": {}
+  },
+  "G33": {
+    "shortDesc": "Delta Auto Calibration",
+    "category": "calibrationdelta",
+    "desc": "With the G33 command you can:",
+    "parameters": {
+      "C": {
+        "shortDesc": "If omitted iterations stop at best achievable precision. If set iterations will stop at the set precision.",
+        "optional": true
+      },
+      "E": {
+        "shortDesc": "Engage the probe for each point.",
+        "optional": true
+      },
+      "F": {
+        "shortDesc": "Run (“force”) this number of iterations and take the best result.",
+        "optional": true
+      },
+      "O": {
+        "shortDesc": "Probe at probe-offset-relative positions instead of the required kinematic points.",
+        "optional": true
+      },
+      "P": {
+        "shortDesc": "Number of probe points. If not specified, uses DELTA_CALIBRATION_DEFAULT_POINTS",
+        "optional": true
+      },
+      "R": {
+        "shortDesc": "Temporarily reduce the size of the probe grid by the specified amount.",
+        "optional": true
+      },
+      "T": {
+        "shortDesc": "Disable tower angle corrections calibration (P3-P7)",
+        "optional": true
+      },
+      "V": {
+        "shortDesc": "Set the verbose level",
+        "optional": true
+      }
+    }
+  },
+  "G34": {
+    "shortDesc": "Mechanical Gantry Calibration",
+    "category": "calibration",
+    "desc": "This command is used to align the ends of the X gantry. See the video demonstration above.",
+    "parameters": {
+      "S": {
+        "shortDesc": "Current value to use for the raise move. (Default: GANTRY_CALIBRATION_CURRENT)",
+        "optional": true
+      },
+      "Z": {
+        "shortDesc": "Extra distance past Z_MAX_POS to move the Z axis. (Default: GANTRY_CALIBRATION_EXTRA_HEIGHT)",
+        "optional": true
+      }
+    }
+  },
+  "G35": {
+    "shortDesc": "Tramming Assistant",
+    "category": "calibration",
+    "desc": "This command runs an interactive procedure to help you adjust the bed corners so that the bed is as true to the machine frame as possible. This is an important step in calibrating your printer and getting the best first layer results.",
+    "parameters": {
+      "S": {
+        "shortDesc": "Screw thread type",
+        "optional": true
+      }
+    }
+  },
+  "G38.2-G38.5": {
+    "shortDesc": "Probe target",
+    "category": "calibration",
+    "desc": "The Probe Target commands are used to probe towards (or away from) a workpiece to determine its precise position. You might, for example, use a grounded metal workpiece, with a metal probe spliced into the bed probe circuit.",
+    "parameters": {
+      "F": {
+        "shortDesc": "Feedrate for the move",
+        "optional": true
+      },
+      "X": {
+        "shortDesc": "Target X",
+        "optional": true
+      },
+      "Y": {
+        "shortDesc": "Target Y",
+        "optional": true
+      },
+      "Z": {
+        "shortDesc": "Target Z",
+        "optional": true
+      }
+    }
+  },
+  "G42": {
+    "shortDesc": "Move to mesh coordinate",
+    "category": "calibration",
+    "desc": "The G42 command moves the nozzle to the location corresponding to a specific coordinate in the bed leveling mesh. It operates similarly to the G0 and G1 commands except that the provided coordinates are a mesh row and column instead of an absolute or relative position on the bed.",
+    "parameters": {
+      "F": {
+        "shortDesc": "The maximum movement rate of the move between the start and end point. The feedrate set here applies to subsequent moves that omit this parameter.",
+        "optional": true
+      },
+      "I": {
+        "shortDesc": "The column of the mesh coordinate",
+        "optional": true
+      },
+      "J": {
+        "shortDesc": "The row of the mesh coordinate",
+        "optional": true
+      }
+    }
+  },
+  "G53": {
+    "shortDesc": "Move in Machine Coordinates",
+    "category": "geometry",
+    "desc": "G53 applies native workspace to the current move. See G54-G59.3 for workspace coordinate system. In CNC G-code G53 is a modifier. It precedes a movement command (or other modifiers) on the same line. Marlin also accepts G53 on a line by itself as the command to return to the native workspace.",
+    "parameters": {}
+  },
+  "G54-G59.3": {
+    "shortDesc": "Workspace Coordinate System",
+    "category": "geometry",
+    "desc": "A workspace is an XYZ offset to the native machine space. All workspaces default to 0,0,0 at start, or with EEPROM support they may be restored from a previous session. See G53 for native space.",
+    "parameters": {}
+  },
+  "G60": {
+    "shortDesc": "Save Current Position",
+    "category": "coordinates",
+    "desc": "Save the current position of all axes in an SRAM buffer for later recall with G61.",
+    "parameters": {
+      "S": {
+        "shortDesc": "Memory slot. If omitted, the first slot (0) is used.",
+        "optional": true
+      }
+    }
+  },
+  "G61": {
+    "shortDesc": "Return to Saved Position",
+    "category": "coordinates",
+    "desc": "Use this command to move to a saved position. To limit the move to only some axes, include one or more axis letters. Otherwise all axes will be included.",
+    "parameters": {
+      "E": {
+        "shortDesc": "Flag to restore the E axis",
+        "optional": true
+      },
+      "F": {
+        "shortDesc": "Move feedrate",
+        "optional": true
+      },
+      "S": {
+        "shortDesc": "Memory slot (0 if omitted)",
+        "optional": true
+      },
+      "X": {
+        "shortDesc": "Flag to restore the X axis",
+        "optional": true
+      },
+      "Y": {
+        "shortDesc": "Flag to restore the Y axis",
+        "optional": true
+      },
+      "Z": {
+        "shortDesc": "Flag to restore the Z axis",
+        "optional": true
+      }
+    }
+  },
+  "G76": {
+    "shortDesc": "Probe temperature calibration",
+    "category": "calibration",
+    "desc": "Calibrate temperature compensation offsets for bed and/or probe temperatures. Temperature compensation values are added to probe measurements when running G29 mesh bed leveling. Currently, calibration only heats up the bed, not the hotend. The probe is heated up by bringing it close to the heated bed and cooled down by moving it away.",
+    "parameters": {
+      "B": {
+        "shortDesc": "Calibrate bed only",
+        "optional": true
+      },
+      "P": {
+        "shortDesc": "Calibrate probe only",
+        "optional": true
+      }
+    }
+  },
+  "G80": {
+    "shortDesc": "Cancel Current Motion Mode",
+    "category": "motion",
+    "desc": "Cancels the current motion mode (G0 G1 G2 G3 G5 G38.X). With GCODE_MOTION_MODES enabled, Marlin will remember the last used motion mode which can then be canceled with G80.",
+    "parameters": {}
+  },
+  "G90": {
+    "shortDesc": "Absolute Positioning",
+    "category": "units",
+    "desc": "In absolute mode all coordinates given in G-code are interpreted as positions in the logical coordinate space. This includes the extruder position unless overridden by M83.",
+    "parameters": {}
+  },
+  "G91": {
+    "shortDesc": "Relative Positioning",
+    "category": "units",
+    "desc": "Set relative position mode. In this mode all coordinates are interpreted as relative to the last position. This includes the extruder position unless overridden by M82.",
+    "parameters": {}
+  },
+  "G92": {
+    "shortDesc": "Set Position",
+    "category": "motion",
+    "desc": "Set the current position to the values specified. In Marlin 1.1.0 and up, the software endstops are adjusted to preserve the physical movement limits. Thus you could use G92 to set the middle of the bed to 0,0 and then run .gcode that was sliced for a Deltabot.",
+    "parameters": {
+      "E": {
+        "shortDesc": "New extruder position",
+        "optional": true
+      },
+      "X": {
+        "shortDesc": "New X axis position",
+        "optional": true
+      },
+      "Y": {
+        "shortDesc": "New Y axis position",
+        "optional": true
+      },
+      "Z": {
+        "shortDesc": "New Z axis position",
+        "optional": true
+      }
+    }
+  },
+  "G425": {
+    "shortDesc": "Backlash Calibration",
+    "category": "calibration",
+    "desc": "This command performs an automatic calibration of backlash, positional errors, and nozzle offset by touching the nozzle to the sides of a bed-mounted, electrically-conductive object (e.g., a cube, washer or bolt).",
+    "parameters": {
+      "B": {
+        "shortDesc": "Perform calibration of backlash only.",
+        "optional": true
+      },
+      "T": {
+        "shortDesc": "Perform calibration of one toolhead only.",
+        "optional": true
+      },
+      "U": {
+        "shortDesc": "Uncertainty: how far to start probe away from the cube (mm)",
+        "optional": true
+      },
+      "V": {
+        "shortDesc": "Probe cube and print position, error, backlash and hotend offset. (Requires CALIBRATION_REPORTING)",
+        "optional": true
+      }
+    }
+  },
+  "M00": {
+    "shortDesc": "Unconditional stop",
+    "category": "motion",
+    "desc": "The M0 and M1 commands pause after the last movement and wait for the user to continue. M1 is a deprecated alias for M0.",
+    "parameters": {
+      "P": {
+        "shortDesc": "Expire time, in milliseconds",
+        "optional": true
+      },
+      "S": {
+        "shortDesc": "Expire time, in seconds",
+        "optional": true
+      },
+      "s": {
+        "shortDesc": "An optional message to display on the LCD",
+        "optional": true
+      }
+    }
+  },
+  "M01": {
+    "shortDesc": "Unconditional stop",
+    "category": "motion",
+    "desc": "The M0 and M1 commands pause after the last movement and wait for the user to continue. M1 is a deprecated alias for M0.",
+    "parameters": {
+      "P": {
+        "shortDesc": "Expire time, in milliseconds",
+        "optional": true
+      },
+      "S": {
+        "shortDesc": "Expire time, in seconds",
+        "optional": true
+      },
+      "s": {
+        "shortDesc": "An optional message to display on the LCD",
+        "optional": true
+      }
+    }
+  },
+  "M3": {
+    "shortDesc": "Spindle CW / Laser On",
+    "category": "control",
+    "desc": "Wait for moves to complete, then set the spindle speed (clockwise) or laser power.",
+    "parameters": {
+      "I": {
+        "shortDesc": "Inline mode ON / OFF.",
+        "optional": true
+      },
+      "O": {
+        "shortDesc": "Spindle speed or laser power in PWM 0-255 value range",
+        "optional": true
+      },
+      "S": {
+        "shortDesc": "Spindle speed or laser power in the configured value range (see CUTTER_POWER_DISPLAY). (PWM 0-255 by default)",
+        "optional": true
+      }
+    }
+  },
+  "M4": {
+    "shortDesc": "Spindle CCW / Laser On",
+    "category": "control",
+    "desc": "Wait for moves to complete, then set the spindle speed (counter-clockwise) or laser power.",
+    "parameters": {
+      "I": {
+        "shortDesc": "Inline mode ON / OFF.",
+        "optional": true
+      },
+      "O": {
+        "shortDesc": "Spindle speed or laser power in PWM 0-255 value range",
+        "optional": true
+      },
+      "S": {
+        "shortDesc": "Spindle speed or laser power in the configured value range (see CUTTER_POWER_UNIT). (PWM 0-255 by default)",
+        "optional": true
+      }
+    }
+  },
+  "M5": {
+    "shortDesc": "Spindle / Laser Off",
+    "category": "control",
+    "desc": "Wait for moves to complete, then turn off the spindle / laser power and PWM.",
+    "parameters": {}
+  },
+  "M07": {
+    "shortDesc": "Coolant Controls",
+    "category": "control",
+    "desc": "This command pertains to a CNC machine with a liquid cooling system or a laser with air assist.",
+    "parameters": {}
+  },
+  "M08": {
+    "shortDesc": "Coolant Controls",
+    "category": "control",
+    "desc": "This command pertains to a CNC machine with a liquid cooling system or a laser with air assist.",
+    "parameters": {}
+  },
+  "M09": {
+    "shortDesc": "Coolant Controls",
+    "category": "control",
+    "desc": "This command pertains to a CNC machine with a liquid cooling system or a laser with air assist.",
+    "parameters": {}
+  },
+  "M10": {
+    "shortDesc": "Vacuum / Blower Control",
+    "category": "control",
+    "desc": "Immediately turn the cutter’s vacuum or laser’s blower motor on or off.",
+    "parameters": {}
+  },
+  "M11": {
+    "shortDesc": "Vacuum / Blower Control",
+    "category": "control",
+    "desc": "Immediately turn the cutter’s vacuum or laser’s blower motor on or off.",
+    "parameters": {}
+  },
+  "M16": {
+    "shortDesc": "Expected Printer Check",
+    "category": "safety",
+    "desc": "Do a case-sensitive comparison between the string argument and the configured MACHINE_NAME. If the machine name doesn’t match, halt the printer so that a reset is required. This safety feature is meant to prevent G-code sliced for a specific machine from being used on any other machine.",
+    "parameters": {
+      "s": {
+        "shortDesc": "The string to compare to MACHINE_NAME.",
+        "optional": false
+      }
+    }
+  },
+  "M17": {
+    "shortDesc": "Enable Steppers",
+    "category": "control",
+    "desc": "This command can be used to enable one or more steppers (X,Y,Z,E).",
+    "parameters": {
+      "E": {
+        "shortDesc": "E Enable",
+        "optional": true
+      },
+      "X": {
+        "shortDesc": "X Enable",
+        "optional": true
+      },
+      "Y": {
+        "shortDesc": "Y Enable",
+        "optional": true
+      },
+      "Z": {
+        "shortDesc": "Z Enable",
+        "optional": true
+      }
+    }
+  },
+  "M18": {
+    "shortDesc": "Disable steppers",
+    "category": "control",
+    "desc": "This command can be used to set the stepper inactivity timeout (S) or to disable one or more steppers (X,Y,Z,E).",
+    "parameters": {
+      "E": {
+        "shortDesc": "E Disable",
+        "optional": true
+      },
+      "S": {
+        "shortDesc": "Inactivity Timeout. If none specified, disable now.",
+        "optional": true
+      },
+      "X": {
+        "shortDesc": "X Disable",
+        "optional": true
+      },
+      "Y": {
+        "shortDesc": "Y Disable",
+        "optional": true
+      },
+      "Z": {
+        "shortDesc": "Z Disable",
+        "optional": true
+      }
+    }
+  },
+  "M84": {
+    "shortDesc": "Disable steppers",
+    "category": "control",
+    "desc": "This command can be used to set the stepper inactivity timeout (S) or to disable one or more steppers (X,Y,Z,E).",
+    "parameters": {
+      "E": {
+        "shortDesc": "E Disable",
+        "optional": true
+      },
+      "S": {
+        "shortDesc": "Inactivity Timeout. If none specified, disable now.",
+        "optional": true
+      },
+      "X": {
+        "shortDesc": "X Disable",
+        "optional": true
+      },
+      "Y": {
+        "shortDesc": "Y Disable",
+        "optional": true
+      },
+      "Z": {
+        "shortDesc": "Z Disable",
+        "optional": true
+      }
+    }
+  },
+  "M20": {
+    "shortDesc": "List SD Card",
+    "category": "sdcard",
+    "desc": "List all printable files on the SD card back to the requesting serial port in compact DOS 8.3 format. Only files with .gcode, .gco, and .g extensions will be listed. Hidden files (beginning with .) will not be listed.",
+    "parameters": {
+      "F": {
+        "shortDesc": "Only list BIN files. Used by host plugins to facilitate firmware upload.",
+        "optional": true
+      },
+      "L": {
+        "shortDesc": "Include the long filename in the listing.",
+        "optional": true
+      },
+      "T": {
+        "shortDesc": "Include the file timestamp in the listing.",
+        "optional": true
+      }
+    }
+  },
+  "M21": {
+    "shortDesc": "Init SD card",
+    "category": "sdcard",
+    "desc": "Use this command to mount the last-selected SD card or thumb drive.",
+    "parameters": {}
+  },
+  "M22": {
+    "shortDesc": "Release SD card",
+    "category": "sdcard",
+    "desc": "If Marlin gets confused about the state of the SD card, this command can be used to simulate an ejection of the SD card.",
+    "parameters": {}
+  },
+  "M23": {
+    "shortDesc": "Select SD file",
+    "category": "sdcard",
+    "desc": "Select an SD file for printing or processing. Follow with M24 to run the selected file.",
+    "parameters": {
+      "f": {
+        "shortDesc": "The filename of the file to open.",
+        "optional": false
+      }
+    }
+  },
+  "M24": {
+    "shortDesc": "Start or Resume SD print",
+    "category": "sdcard",
+    "desc": "Start an SD print or resume the paused SD print. If PARK_HEAD_ON_PAUSE is enabled, unpark the nozzle.",
+    "parameters": {
+      "S": {
+        "shortDesc": "Position in file to resume from (requires POWER_LOSS_RECOVERY)",
+        "optional": true
+      },
+      "T": {
+        "shortDesc": "Elapsed time since start of print (requires POWER_LOSS_RECOVERY)",
+        "optional": true
+      }
+    }
+  },
+  "M25": {
+    "shortDesc": "Pause SD print",
+    "category": "sdcard",
+    "desc": "Pause the SD print in progress. If PARK_HEAD_ON_PAUSE is enabled, park the nozzle.",
+    "parameters": {}
+  },
+  "M26": {
+    "shortDesc": "Set SD position",
+    "category": "sdcard",
+    "desc": "Set the next read position in the open SD file.",
+    "parameters": {
+      "S": {
+        "shortDesc": "Next file read position to set",
+        "optional": true
+      }
+    }
+  },
+  "M27": {
+    "shortDesc": "Report SD print status",
+    "category": "sdcard",
+    "desc": "With no parameter, report the current SD read position in the form “SD printing byte 123/12345.” If no file is open the response is “Not SD printing.”",
+    "parameters": {
+      "C": {
+        "shortDesc": "Report the filename and long filename of the current file",
+        "optional": true
+      },
+      "S": {
+        "shortDesc": "Interval between auto-reports. S0 to disable (requires AUTO_REPORT_SD_STATUS)",
+        "optional": true
+      }
+    }
+  },
+  "M28": {
+    "shortDesc": "Start SD write",
+    "category": "sdcard",
+    "desc": "This command starts a file write. All commands received by Marlin are written to the file and are not executed until M29 closes the file.",
+    "parameters": {
+      "B": {
+        "shortDesc": "Set an optimized binary file transfer mode. (Requires BINARY_FILE_TRANSFER)",
+        "optional": true
+      },
+      "f": {
+        "shortDesc": "File name to write",
+        "optional": false
+      }
+    }
+  },
+  "M29": {
+    "shortDesc": "Stop SD write",
+    "category": "sdcard",
+    "desc": "Stop writing to a file that was begun with M28 or M928. Logging is disabled.",
+    "parameters": {}
+  },
+  "M30": {
+    "shortDesc": "Delete SD file",
+    "category": "sdcard",
+    "desc": "Delete a file from the SD card.",
+    "parameters": {
+      "f": {
+        "shortDesc": "The filename of the file to delete.",
+        "optional": false
+      }
+    }
+  },
+  "M31": {
+    "shortDesc": "Print time",
+    "category": "printjob",
+    "desc": "This command reports the time elapsed since the start of the current print job to the host. When printing from SD card, the print job timer starts as soon as SD printing starts.",
+    "parameters": {}
+  },
+  "M32": {
+    "shortDesc": "Select and Start",
+    "category": "sdcard",
+    "desc": "The M32 command exists to allow G-code to load other G-code files and run them as sub-programs. This can be useful to change the start / end G-code for a batch of files without having to edit them all.",
+    "parameters": {
+      "P": {
+        "shortDesc": "Sub-Program flag",
+        "optional": true
+      },
+      "S": {
+        "shortDesc": "Starting file offset",
+        "optional": true
+      }
+    }
+  },
+  "M33": {
+    "shortDesc": "Get Long Path",
+    "category": "sdcard",
+    "desc": "Get the long name for a file based on the DOS 8.3 path.",
+    "parameters": {
+      "p": {
+        "shortDesc": "DOS 8.3 path to a file or folder",
+        "optional": false
+      }
+    }
+  },
+  "M34": {
+    "shortDesc": "SDCard Sorting",
+    "category": "sdcard",
+    "desc": "Marlin now contains support for SDCard alphabetical file sorting in the LCD menus. This feature uses free SRAM to create a sorting index for up to the first 256 files in the current folder, and (if you have lots of SRAM) can optionally cache file listings for a more responsive UI. Buffering only occurs during file browsing. Otherwise the SRAM is freed.",
+    "parameters": {
+      "F": {
+        "shortDesc": "Folder Sorting",
+        "optional": true
+      },
+      "S": {
+        "shortDesc": "Sorting on/off",
+        "optional": true
+      }
+    }
+  },
+  "M42": {
+    "shortDesc": "Set Pin State",
+    "category": "control",
+    "desc": "For custom hardware not officially supported in Marlin, you can often just connect up an unused pin and use M42 to control it.",
+    "parameters": {
+      "I": {
+        "shortDesc": "Ignore protection on pins that Marlin is using.",
+        "optional": true
+      },
+      "P": {
+        "shortDesc": "A digital pin number (even for analog pins) to write to. (LED_PIN if omitted)",
+        "optional": true
+      },
+      "S": {
+        "shortDesc": "The state to set. PWM pins may be set from 0-255.",
+        "optional": false
+      },
+      "T": {
+        "shortDesc": "Set the pin mode. Prior to Marlin 2.0.9.4 this is set with the M parameter.",
+        "optional": true
+      }
+    }
+  },
+  "M43": {
+    "shortDesc": "Debug Pins",
+    "category": "debug",
+    "desc": "When setting up or debugging a machine it’s useful to know how pins are assigned to functions by the firmware, and to be able to find pins for use with new functions. M43 provides these tools. M43 by itself reports all pin assignments. Use P to specify a single pin. Use I to report the values on pins that are protected. Use W to watch the specified pin, or all pins. Use the E option to monitor endstops. Use S option to test a BLTouch type servo probe. Use T option to toggle pins.",
+    "parameters": {
+      "E": {
+        "shortDesc": "Watch endstops",
+        "optional": true
+      },
+      "I": {
+        "shortDesc": "Ignore protection when reporting values",
+        "optional": true
+      },
+      "P": {
+        "shortDesc": "Digital Pin Number",
+        "optional": true
+      },
+      "S": {
+        "shortDesc": "Test BLTouch type servo probes. Use P to specify servo index (0-3). Defaults to 0 if P omitted",
+        "optional": true
+      },
+      "T": {
+        "shortDesc": "Toggle pins - see M43 T for options",
+        "optional": true
+      },
+      "W": {
+        "shortDesc": "Watch pins",
+        "optional": true
+      }
+    }
+  },
+  "M43 T": {
+    "shortDesc": "Toggle Pins",
+    "category": "debug",
+    "desc": "The M43 T command toggles one or more pins.",
+    "parameters": {
+      "I": {
+        "shortDesc": "Flag to ignore Marlin’s pin protection. Use with caution!!!!",
+        "optional": true
+      },
+      "L": {
+        "shortDesc": "End Pin number. If not given, will default to last pin defined for this board",
+        "optional": true
+      },
+      "R": {
+        "shortDesc": "Repeat pulses on each pin this number of times before continuing to next pin. If not given will default to 1.",
+        "optional": true
+      },
+      "S": {
+        "shortDesc": "Start Pin number. If not given, will default to 0",
+        "optional": true
+      },
+      "W": {
+        "shortDesc": "Wait time (in milliseconds) transitions. If not given will default to 500.",
+        "optional": true
+      }
+    }
+  },
+  "M48": {
+    "shortDesc": "Probe Repeatability Test",
+    "category": "calibration",
+    "desc": "Probes come in many flavors and as such have varying levels of accuracy, reliability, and repeatability, depending on several factors. This command tests the probe for repeatability (precision) and produces a standard deviation based on two or more probes of the same XY position.",
+    "parameters": {
+      "C": {
+        "shortDesc": "Probe with temperature compensation enabled (PTC_PROBE, PTC_BED, PTC_HOTEND)",
+        "optional": true
+      },
+      "E": {
+        "shortDesc": "Engage for each probe",
+        "optional": true
+      },
+      "L": {
+        "shortDesc": "Number of legs to probe",
+        "optional": true
+      },
+      "P": {
+        "shortDesc": "Number of probes to do",
+        "optional": true
+      },
+      "S": {
+        "shortDesc": "Star/Schizoid probe. By default this will do 7 points. Override with L.",
+        "optional": true
+      },
+      "V": {
+        "shortDesc": "Verbose Level (0-4, default=1)",
+        "optional": true
+      },
+      "X": {
+        "shortDesc": "X Position",
+        "optional": true
+      },
+      "Y": {
+        "shortDesc": "Y Position",
+        "optional": true
+      }
+    }
+  },
+  "M73": {
+    "shortDesc": "Set Print Progress",
+    "category": "lcd",
+    "desc": "Set current print progress percentage and/or remaining time for display on the LCD.",
+    "parameters": {
+      "P": {
+        "shortDesc": "Current print progress percentage",
+        "optional": false
+      },
+      "R": {
+        "shortDesc": "Set remaining time.",
+        "optional": true
+      }
+    }
+  },
+  "M75": {
+    "shortDesc": "Start Print Job Timer",
+    "category": "printjob",
+    "desc": "Start the print job timer.",
+    "parameters": {
+      "s": {
+        "shortDesc": "A string to display in the LCD heading. (Requires DWIN_CREALITY_LCD_ENHANCED)",
+        "optional": true
+      }
+    }
+  },
+  "M76": {
+    "shortDesc": "Pause Print Job Timer",
+    "category": "printjob",
+    "desc": "Pause the print job timer.",
+    "parameters": {}
+  },
+  "M77": {
+    "shortDesc": "Stop Print Job Timer",
+    "category": "printjob",
+    "desc": "Stop the print job timer.",
+    "parameters": {}
+  },
+  "M78": {
+    "shortDesc": "Print Job Stats",
+    "category": "printjob",
+    "parameters": {}
+  },
+  "M80": {
+    "shortDesc": "Power On",
+    "category": "control",
+    "desc": "Turn on the high-voltage power supply. Requires a board that’s powered from USB or another 5V source.",
+    "parameters": {
+      "S": {
+        "shortDesc": "Report Power Supply state",
+        "optional": true
+      }
+    }
+  },
+  "M81": {
+    "shortDesc": "Power Off",
+    "category": "control",
+    "desc": "Turn off the high-voltage power supply. If the board is not powered from another source, this may also shut down the electronics.",
+    "parameters": {}
+  },
+  "M82": {
+    "shortDesc": "E Absolute",
+    "category": "units",
+    "desc": "This command is used to override G91 and put the E axis into absolute mode independent of the other axes.",
+    "parameters": {}
+  },
+  "M83": {
+    "shortDesc": "E Relative",
+    "category": "units",
+    "desc": "This command is used to override G90 and put the E axis into relative mode independent of the other axes.",
+    "parameters": {}
+  },
+  "M85": {
+    "shortDesc": "Inactivity Shutdown",
+    "category": "control",
+    "desc": "Use this command to set a maximum period of time for the machine to be inactive (with no moves). If the machine is idle for longer than the set period, the firmware will shut everything down and halt the machine.",
+    "parameters": {
+      "S": {
+        "shortDesc": "Max inactive seconds",
+        "optional": false
+      }
+    }
+  },
+  "M92": {
+    "shortDesc": "Set Axis Steps-per-unit",
+    "category": "motion",
+    "desc": "Use M92 to set the steps-per-unit for one or more axes. This setting affects how many steps will be done for each unit of movement.",
+    "parameters": {
+      "E": {
+        "shortDesc": "E steps per unit",
+        "optional": true
+      },
+      "T": {
+        "shortDesc": "Target extruder (Requires DISTINCT_E_FACTORS)",
+        "optional": true
+      },
+      "X": {
+        "shortDesc": "X steps per unit",
+        "optional": true
+      },
+      "Y": {
+        "shortDesc": "Y steps per unit",
+        "optional": true
+      },
+      "Z": {
+        "shortDesc": "Z steps per unit",
+        "optional": true
+      }
+    }
+  },
+  "M100": {
+    "shortDesc": "Free Memory",
+    "category": "debug",
+    "desc": "Use M100 for development purposes to observe how much memory (particularly stack) is being used by code. Proper AVR code should avoid use of new, malloc, etc., and instead use either pre-allocated static variables or stack.",
+    "parameters": {
+      "C": {
+        "shortDesc": "Corrupt ‘n’ locations in the free memory pool and report the locations of the corruption. This is useful to check the correctness of the M100 D and M100 F commands",
+        "optional": true
+      },
+      "D": {
+        "shortDesc": "Dump the free memory block from __brkval to the stack pointer",
+        "optional": true
+      },
+      "F": {
+        "shortDesc": "Return the number of free bytes in the memory pool along with other vital statistics that define the memory pool",
+        "optional": true
+      },
+      "I": {
+        "shortDesc": "Initialize the free memory pool so it can be watched and print vital statistics that define the free memory pool",
+        "optional": true
+      }
+    }
+  },
+  "M102": {
+    "shortDesc": "Configure Bed Distance Sensor",
+    "category": "calibration",
+    "parameters": {
+      "S": {
+        "shortDesc": "Set the Bed Distance Sensor state and trigger distance.",
+        "optional": false
+      }
+    }
+  },
+  "M104": {
+    "shortDesc": "Set Hotend Temperature",
+    "category": "thermal",
+    "desc": "Set a new target hot end temperature and continue without waiting. The firmware will continue to try to reach and hold the temperature in the background.",
+    "parameters": {
+      "B": {
+        "shortDesc": "AUTOTEMP: The max auto-temperature.",
+        "optional": true
+      },
+      "F": {
+        "shortDesc": "AUTOTEMP: Autotemp flag. Omit to disable autotemp.",
+        "optional": true
+      },
+      "I": {
+        "shortDesc": "Material preset index. Overrides S.",
+        "optional": true
+      },
+      "S": {
+        "shortDesc": "Target temperature.AUTOTEMP: the min auto-temperature.",
+        "optional": true
+      },
+      "T": {
+        "shortDesc": "Hotend index. If omitted, the currently active hotend will be used.",
+        "optional": true
+      }
+    }
+  },
+  "M105": {
+    "shortDesc": "Report Temperatures",
+    "category": "thermal",
+    "desc": "Request a temperature report to be sent to the host as soon as possible.",
+    "parameters": {
+      "R": {
+        "shortDesc": "Include the Redundant temperature sensor (if any)",
+        "optional": true
+      },
+      "T": {
+        "shortDesc": "Hotend index",
+        "optional": true
+      }
+    }
+  },
+  "M106": {
+    "shortDesc": "Set Fan Speed",
+    "category": "thermal",
+    "desc": "Turn on one of the fans and set its speed. If no fan index is given, the print cooling fan is selected. The fan speed applies to the next block added to the planner, so it will not take effect until previous moves in the planner are done. Under manual control with an idle machine, M106 will change the fan speed immediately.",
+    "parameters": {
+      "I": {
+        "shortDesc": "Material preset index. Overrides S.",
+        "optional": true
+      },
+      "P": {
+        "shortDesc": "Fan index",
+        "optional": true
+      },
+      "S": {
+        "shortDesc": "Speed, from 0 to 255. S255 provides 100% duty cycle; S128 produces 50%.",
+        "optional": true
+      },
+      "T": {
+        "shortDesc": "Secondary speed. Added in Marlin 1.1.7. (Requires EXTRA_FAN_SPEED)",
+        "optional": true
+      }
+    }
+  },
+  "M107": {
+    "shortDesc": "Fan Off",
+    "category": "thermal",
+    "desc": "Turn off one of the fans. If no fan index is given, the print cooling fan.",
+    "parameters": {
+      "P": {
+        "shortDesc": "Fan index",
+        "optional": true
+      }
+    }
+  },
+  "M108": {
+    "shortDesc": "Break and Continue",
+    "category": "control",
+    "desc": "The M108 command requires EMERGENCY_PARSER for full effectiveness. (Otherwise a full queue blocks the parser.)",
+    "parameters": {}
+  },
+  "M109": {
+    "shortDesc": "Wait for Hotend Temperature",
+    "category": "thermal",
+    "desc": "This command optionally sets a new target hot end temperature and waits for the target temperature to be reached before proceeding. If the temperature is set with S then M109 waits only when heating. If the temperature is set with R then M109 will also wait for the temperature to go down.",
+    "parameters": {
+      "B": {
+        "shortDesc": "With AUTOTEMP, the max auto-temperature.",
+        "optional": true
+      },
+      "F": {
+        "shortDesc": "Autotemp flag. Omit to disable autotemp.",
+        "optional": true
+      },
+      "I": {
+        "shortDesc": "Material preset index. Overrides S.",
+        "optional": true
+      },
+      "R": {
+        "shortDesc": "Target temperature (wait for cooling or heating).",
+        "optional": true
+      },
+      "S": {
+        "shortDesc": "Target temperature (wait only when heating). Also AUTOTEMP: The min auto-temperature.",
+        "optional": true
+      },
+      "T": {
+        "shortDesc": "Hotend index. If omitted, the currently active hotend will be used.",
+        "optional": true
+      }
+    }
+  },
+  "M110": {
+    "shortDesc": "Set Line Number",
+    "category": "hosts",
+    "desc": "Hosts can use M110 to set the current line number in a print job. Each line number sent by a host must be one higher than the previous line number, or the firmware will ignore the line and send an error requesting a resend of the missing line. This is one technique Marlin uses to keep in sync with hosts.",
+    "parameters": {
+      "N": {
+        "shortDesc": "Line number",
+        "optional": false
+      }
+    }
+  },
+  "M111": {
+    "shortDesc": "Debug Level",
+    "category": "hosts",
+    "desc": "Marlin has several debug bits that can be set, in combination, to help configure, troubleshoot, and debug the firmware. Add up the debug bits you need:",
+    "parameters": {
+      "S": {
+        "shortDesc": "Debug flag bits",
+        "optional": true
+      }
+    }
+  },
+  "M112": {
+    "shortDesc": "Emergency Stop",
+    "category": "safety",
+    "desc": "Used for emergency stopping, M112 shuts down the machine, turns off all the steppers and heaters, and if possible, turns off the power supply. A reset is required to return to operational mode.",
+    "parameters": {}
+  },
+  "M113": {
+    "shortDesc": "Host Keepalive",
+    "category": "hosts",
+    "desc": "During some lengthy processes, such as G29, Marlin may appear to the host to have “gone away.” The “host keepalive” feature will send messages to the host when Marlin is busy or waiting for user response so the host won’t try to reconnect.",
+    "parameters": {
+      "S": {
+        "shortDesc": "Keepalive interval (0-60).",
+        "optional": true
+      }
+    }
+  },
+  "M114": {
+    "shortDesc": "Get Current Position",
+    "category": "hosts",
+    "desc": "Get the “current position” of the active tool. Stepper values are included.",
+    "parameters": {
+      "D": {
+        "shortDesc": "Detailed information (requires M114_DETAIL)",
+        "optional": true
+      },
+      "E": {
+        "shortDesc": "Report E stepper position (requires M114_DETAIL)",
+        "optional": true
+      },
+      "R": {
+        "shortDesc": "Real position information (requires M114_REALTIME)",
+        "optional": true
+      }
+    }
+  },
+  "M115": {
+    "shortDesc": "Firmware Info",
+    "category": "hosts",
+    "desc": "This command causes Marlin to output a string like this:",
+    "parameters": {}
+  },
+  "M117": {
+    "shortDesc": "Set LCD Message",
+    "category": "lcd",
+    "desc": "Set the status line message on the LCD.",
+    "parameters": {
+      "s": {
+        "shortDesc": "LCD status message",
+        "optional": true
+      }
+    }
+  },
+  "M118": {
+    "shortDesc": "Serial print",
+    "category": "hosts",
+    "desc": "Send a message to the connected host for display in the host console or to perform a host action.",
+    "parameters": {
+      "A": {
+        "shortDesc": "Prepend //  to denote a comment or action command. Hosts like OctoPrint can interpret such commands to perform special actions. See your host’s documentation.",
+        "optional": true
+      },
+      "E": {
+        "shortDesc": "Prepend echo: to the message. Some hosts will display echo messages differently when preceded by echo:.",
+        "optional": true
+      },
+      "P": {
+        "shortDesc": "Send message to host serial port (1-9).",
+        "optional": true
+      },
+      "s": {
+        "shortDesc": "Message string. If omitted, a blank line will be sent.",
+        "optional": true
+      }
+    }
+  },
+  "M119": {
+    "shortDesc": "Endstop States",
+    "category": "debug",
+    "desc": "Use this command to get the current state of all endstops, useful for setup and troubleshooting. Endstops are reported as either “open” or “TRIGGERED”.",
+    "parameters": {}
+  },
+  "M120": {
+    "shortDesc": "Enable Endstops",
+    "category": "control",
+    "desc": "Enable endstops.",
+    "parameters": {}
+  },
+  "M121": {
+    "shortDesc": "Disable Endstops",
+    "category": "control",
+    "desc": "Disable endstops.",
+    "parameters": {}
+  },
+  "M122": {
+    "shortDesc": "TMC Debugging",
+    "category": "debug",
+    "desc": "Do a communication check for configured TMC drivers. Trinamic drivers that support this feature are TMC2130, TMC2160, TMC2208, TMC2209, TMC2660, TMC5130, and TMC5160.",
+    "parameters": {
+      "E": {
+        "shortDesc": "Target E driver(s) only.",
+        "optional": true
+      },
+      "I": {
+        "shortDesc": "Flag to re-initialize stepper drivers with current settings.",
+        "optional": true
+      },
+      "P": {
+        "shortDesc": "Interval between continuous debug reports, in milliseconds.",
+        "optional": true
+      },
+      "S": {
+        "shortDesc": "Flag to enable/disable continuous debug reporting.",
+        "optional": true
+      },
+      "V": {
+        "shortDesc": "Report raw register data. Refer to the datasheet to decypher.",
+        "optional": true
+      },
+      "X": {
+        "shortDesc": "Target X driver(s) only.",
+        "optional": true
+      },
+      "Y": {
+        "shortDesc": "Target Y driver(s) only.",
+        "optional": true
+      },
+      "Z": {
+        "shortDesc": "Target Z driver(s) only.",
+        "optional": true
+      }
+    }
+  },
+  "M123": {
+    "shortDesc": "Fan Tachometers",
+    "category": "control",
+    "desc": "If your machine has fans with tachometers this command will report their current speed readings in RPM. Marlin can also auto-report the fan speeds at regular intervals, as set by M123 S.",
+    "parameters": {}
+  },
+  "M125": {
+    "shortDesc": "Park Head",
+    "category": "nozzle",
+    "desc": "Save the current nozzle position and move to the configured park position.",
+    "parameters": {
+      "L": {
+        "shortDesc": "Retract length (otherwise FILAMENT_CHANGE_RETRACT_LENGTH)",
+        "optional": true
+      },
+      "P": {
+        "shortDesc": "Always show a prompt and await a response (With an LCD menu)",
+        "optional": true
+      },
+      "X": {
+        "shortDesc": "X position to park at (otherwise FILAMENT_CHANGE_X_POS)",
+        "optional": true
+      },
+      "Y": {
+        "shortDesc": "Y position to park at (otherwise FILAMENT_CHANGE_Y_POS)",
+        "optional": true
+      },
+      "Z": {
+        "shortDesc": "Z raise before park (otherwise FILAMENT_CHANGE_Z_ADD)",
+        "optional": true
+      }
+    }
+  },
+  "M126": {
+    "shortDesc": "Baricuda 1 Open",
+    "category": "baricuda",
+    "desc": "Open the valve for Baricuda paste extruder 1.",
+    "parameters": {
+      "S": {
+        "shortDesc": "Valve pressure",
+        "optional": true
+      }
+    }
+  },
+  "M127": {
+    "shortDesc": "Baricuda 1 Close",
+    "category": "baricuda",
+    "desc": "Close the valve for Baricuda paste extruder 1.",
+    "parameters": {}
+  },
+  "M128": {
+    "shortDesc": "Baricuda 2 Open",
+    "category": "baricuda",
+    "desc": "Open the valve for Baricuda paste extruder 2.",
+    "parameters": {
+      "S": {
+        "shortDesc": "Valve pressure",
+        "optional": true
+      }
+    }
+  },
+  "M129": {
+    "shortDesc": "Baricuda 2 Close",
+    "category": "baricuda",
+    "desc": "Close the valve for Baricuda paste extruder 2.",
+    "parameters": {}
+  },
+  "M140": {
+    "shortDesc": "Set Bed Temperature",
+    "category": "thermal",
+    "desc": "Set a new target temperature for the heated bed and continue without waiting. The firmware manages heating in the background.",
+    "parameters": {
+      "I": {
+        "shortDesc": "Material preset index. Overrides S.",
+        "optional": true
+      },
+      "S": {
+        "shortDesc": "Target temperature",
+        "optional": true
+      }
+    }
+  },
+  "M141": {
+    "shortDesc": "Set Chamber Temperature",
+    "category": "thermal",
+    "desc": "Set a new target heated chamber temperature and continue without waiting. The firmware will continue to try to reach and hold the temperature in the background.",
+    "parameters": {
+      "S": {
+        "shortDesc": "Target temperature.AUTOTEMP: the min auto-temperature.",
+        "optional": true
+      }
+    }
+  },
+  "M143": {
+    "shortDesc": "Set Laser Cooler Temperature",
+    "category": "thermal",
+    "desc": "Set a cooler target temperature and continue without waiting. The firmware manages cooling in the background. Any value greater than the COOLER_MAXTEMP (set in Configuratin_adv.h) will be set to the COOLER_MAXTEMP value. Use M193 if you want to wait for the cooler to reach the target temperature.",
+    "parameters": {
+      "S": {
+        "shortDesc": "Target laser coolant temperature.",
+        "optional": true
+      }
+    }
+  },
+  "M145": {
+    "shortDesc": "Set Material Preset",
+    "category": "lcd",
+    "desc": "Set the preheating presets for materials in the LCD menu.",
+    "parameters": {
+      "B": {
+        "shortDesc": "Bed temperature",
+        "optional": true
+      },
+      "F": {
+        "shortDesc": "Fan speed",
+        "optional": true
+      },
+      "H": {
+        "shortDesc": "Hotend temperature",
+        "optional": true
+      },
+      "S": {
+        "shortDesc": "Material index",
+        "optional": true
+      }
+    }
+  },
+  "M149": {
+    "shortDesc": "Set Temperature Units",
+    "category": "units",
+    "desc": "Set temperature units to Celsius, Fahrenheit, or Kelvin. Celsius is the default.",
+    "parameters": {
+      "C": {
+        "shortDesc": "Celsius",
+        "optional": true
+      },
+      "F": {
+        "shortDesc": "Fahrenheit",
+        "optional": true
+      },
+      "K": {
+        "shortDesc": "Kelvin",
+        "optional": true
+      }
+    }
+  },
+  "M150": {
+    "shortDesc": "Set RGB(W) Color",
+    "category": "lcd",
+    "desc": "If you have an RGB(W) light, either as part of a controller or installed separately, the M150 command can be used to set its color.",
+    "parameters": {
+      "B": {
+        "shortDesc": "Blue component from 0 to 255",
+        "optional": true
+      },
+      "I": {
+        "shortDesc": "NeoPixel pixel index (0 .. pixels-1) (Requires NEOPIXEL_LED)",
+        "optional": true
+      },
+      "K": {
+        "shortDesc": "Keep all unspecified values unchanged (Requires NEOPIXEL_LED)",
+        "optional": true
+      },
+      "P": {
+        "shortDesc": "Brightness from 0 to 255 (Requires NEOPIXEL_LED)",
+        "optional": true
+      },
+      "R": {
+        "shortDesc": "Red component from 0 to 255",
+        "optional": true
+      },
+      "S": {
+        "shortDesc": "NeoPixel strip index (0 or 1) (Requires NEOPIXEL2_SEPARATE)",
+        "optional": true
+      },
+      "U": {
+        "shortDesc": "Green component from 0 to 255",
+        "optional": true
+      },
+      "W": {
+        "shortDesc": "White component from 0 to 255 (RGBW_LED or NEOPIXEL_LED only)",
+        "optional": true
+      }
+    }
+  },
+  "M154": {
+    "shortDesc": "Position Auto-Report",
+    "category": "hosts",
+    "desc": "Some host software and serial controllers use M114 to get the current position, but polling with M114 is less than optimal, and in older versions of Marlin it would cause print stuttering. With M154 hosts can simply set an interval and Marlin will keep sending reports automatically. This method is preferred over polling with M114.",
+    "parameters": {
+      "S": {
+        "shortDesc": "Interval in seconds between auto-reports. S0 to disable.",
+        "optional": true
+      }
+    }
+  },
+  "M155": {
+    "shortDesc": "Temperature Auto-Report",
+    "category": "hosts",
+    "desc": "It can be useful for host software to track temperatures, display and graph them over time, but polling with M105 is less than optimal. With M155 hosts simply set an interval and Marlin will keep sending data automatically. This method is preferred over polling with M105.",
+    "parameters": {
+      "S": {
+        "shortDesc": "Interval in seconds between auto-reports. S0 to disable.",
+        "optional": true
+      }
+    }
+  },
+  "M163": {
+    "shortDesc": "Set Mix Factor",
+    "category": "mixing",
+    "desc": "Set a single mix factor (in proportion to the sum total of all mix factors). The mix must be committed to a virtual tool by M164 before it takes effect.",
+    "parameters": {
+      "P": {
+        "shortDesc": "Mix factor",
+        "optional": true
+      },
+      "S": {
+        "shortDesc": "Component index",
+        "optional": true
+      }
+    }
+  },
+  "M164": {
+    "shortDesc": "Save Mix",
+    "category": "mixing",
+    "parameters": {
+      "S": {
+        "shortDesc": "Tool index (active virtual tool if omitted)",
+        "optional": false
+      }
+    }
+  },
+  "M165": {
+    "shortDesc": "Set Mix",
+    "category": "mixing",
+    "desc": "Set the mix for the active virtual extruder all at once. Any factors left out are set to 0.0. This is based on a reference implementation by Pìa Taubert.",
+    "parameters": {
+      "A": {
+        "shortDesc": "Mix factor 1",
+        "optional": true
+      },
+      "B": {
+        "shortDesc": "Mix factor 2",
+        "optional": true
+      },
+      "C": {
+        "shortDesc": "Mix factor 3",
+        "optional": true
+      },
+      "D": {
+        "shortDesc": "Mix factor 4",
+        "optional": true
+      },
+      "H": {
+        "shortDesc": "Mix factor 5",
+        "optional": true
+      },
+      "I": {
+        "shortDesc": "Mix factor 6",
+        "optional": true
+      }
+    }
+  },
+  "M166": {
+    "shortDesc": "Gradient Mix",
+    "category": "mixing",
+    "desc": "Use M166 to set a gradient that will be automatically updated as the Z position changes during a print. The gradient smoothly transitions from one virtual tool to another between the given starting and ending Z heights. Below the starting height the starting virtual tool fully applies, and above the ending height the ending virtual tool fully applies.",
+    "parameters": {
+      "A": {
+        "shortDesc": "Starting Z Height. (Use Z to set the Ending Z Height.)",
+        "optional": false
+      },
+      "I": {
+        "shortDesc": "Starting Virtual Tool. The Gradient begins with this tool-mix. Below the Starting Z Height the Starting Virtual Tool fully applies.",
+        "optional": false
+      },
+      "J": {
+        "shortDesc": "Ending Virtual Tool. The Gradient transitions to this tool-mix as Z approaches the Ending Z Height. Above the Ending Z Height the Ending Virtual Tool fully applies.",
+        "optional": false
+      },
+      "S": {
+        "shortDesc": "Enable / disable the gradient in manual mode. When using the tool index alias, tool-change commands determine whether or not the gradient is enabled.",
+        "optional": true
+      },
+      "T": {
+        "shortDesc": "A tool index to reassign to the gradient. If no index is given, cancel the tool assignment.",
+        "optional": true
+      },
+      "Z": {
+        "shortDesc": "Ending Z Height. (Use A to set the Starting Z Height.)",
+        "optional": false
+      }
+    }
+  },
+  "M190": {
+    "shortDesc": "Wait for Bed Temperature",
+    "category": "thermal",
+    "desc": "This command optionally sets a new target temperature for the heated bed and waits for the target temperature to be reached before proceeding. If the temperature is set with S then it waits only when heating.",
+    "parameters": {
+      "I": {
+        "shortDesc": "Material preset index. Overrides S.",
+        "optional": true
+      },
+      "R": {
+        "shortDesc": "Target temperature (wait for cooling or heating).",
+        "optional": true
+      },
+      "S": {
+        "shortDesc": "Target temperature (wait only when heating).",
+        "optional": true
+      }
+    }
+  },
+  "M191": {
+    "shortDesc": "Wait for Chamber Temperature",
+    "category": "thermal",
+    "desc": "This command optionally sets a new target chamber temperature and waits for the target temperature to be reached before proceeding. If the temperature is set with S then it waits only when heating.",
+    "parameters": {
+      "R": {
+        "shortDesc": "Target temperature (wait for cooling or heating).",
+        "optional": true
+      },
+      "S": {
+        "shortDesc": "Target temperature (wait only when heating).",
+        "optional": true
+      }
+    }
+  },
+  "M192": {
+    "shortDesc": "Wait for Probe temperature",
+    "category": "calibration",
+    "desc": "Use this command to dwell until the probe reaches a given target temperature.",
+    "parameters": {
+      "R": {
+        "shortDesc": "Temperature to wait for, whether heating or cooling.",
+        "optional": true
+      },
+      "S": {
+        "shortDesc": "A minimum temperature to wait for. No wait if already higher.",
+        "optional": true
+      }
+    }
+  },
+  "M193": {
+    "shortDesc": "Set Laser Cooler Temperature",
+    "category": "thermal",
+    "desc": "M193 optionally sets the cooler target temperature and dwells until the cooler temperature is equal to or below the target. Any value greater than the COOLER_MAXTEMP (set in Configuratin_adv.h) will be set to the COOLER_MAXTEMP value. Use M143 if you want to set the target temperature without waiting or to turn the cooler off.",
+    "parameters": {
+      "S": {
+        "shortDesc": "Target laser coolant temperature.",
+        "optional": true
+      }
+    }
+  },
+  "M200": {
+    "shortDesc": "Set Filament Diameter",
+    "category": "motion",
+    "desc": "Set the filament’s current diameter and enable volumetric extrusion.",
+    "parameters": {
+      "D": {
+        "shortDesc": "Filament diameter",
+        "optional": true
+      },
+      "L": {
+        "shortDesc": "Set volumetric extruder limit (in mm3/sec). L0 disables the limit. (Requires VOLUMETRIC_EXTRUDER_LIMIT.)",
+        "optional": true
+      },
+      "S": {
+        "shortDesc": "0 to disable volumetric extrusion mode, otherwise volumetric is enabled.",
+        "optional": true
+      },
+      "T": {
+        "shortDesc": "Extruder index. If omitted, the currently active extruder will be used.",
+        "optional": true
+      }
+    }
+  },
+  "M201": {
+    "shortDesc": "Print Move Limits",
+    "category": "motion",
+    "desc": "Set the max acceleration for one or more axes (in current units-per-second squared). With XY_FREQUENCY_LIMIT you can also set the XY frequency limits.",
+    "parameters": {
+      "E": {
+        "shortDesc": "E axis max acceleration",
+        "optional": true
+      },
+      "F": {
+        "shortDesc": "Planner frequency limit (Requires XY_FREQUENCY_LIMIT)",
+        "optional": true
+      },
+      "S": {
+        "shortDesc": "Planner XY frequency minimum speed percentage (Requires XY_FREQUENCY_LIMIT)",
+        "optional": true
+      },
+      "T": {
+        "shortDesc": "Target extruder (Requires DISTINCT_E_FACTORS)",
+        "optional": true
+      },
+      "X": {
+        "shortDesc": "X axis max acceleration",
+        "optional": true
+      },
+      "Y": {
+        "shortDesc": "Y axis max acceleration",
+        "optional": true
+      },
+      "Z": {
+        "shortDesc": "Z axis max acceleration",
+        "optional": true
+      }
+    }
+  },
+  "M203": {
+    "shortDesc": "Set Max Feedrate",
+    "category": "motion",
+    "desc": "Set the max feedrate for one or more axes (in current units-per-second).",
+    "parameters": {
+      "E": {
+        "shortDesc": "E axis max feedrate",
+        "optional": true
+      },
+      "T": {
+        "shortDesc": "Target extruder (Requires DISTINCT_E_FACTORS)",
+        "optional": true
+      },
+      "X": {
+        "shortDesc": "X axis max feedrate",
+        "optional": true
+      },
+      "Y": {
+        "shortDesc": "Y axis max feedrate",
+        "optional": true
+      },
+      "Z": {
+        "shortDesc": "Z axis max feedrate",
+        "optional": true
+      }
+    }
+  },
+  "M204": {
+    "shortDesc": "Set Starting Acceleration",
+    "category": "motion",
+    "desc": "Set the preferred starting acceleration (in units/s/s) for moves of different types. Send M204 with no parameters to get current settings.",
+    "parameters": {
+      "P": {
+        "shortDesc": "Printing acceleration. Used for moves that include extrusion (i.e., which employ the current tool).",
+        "optional": true
+      },
+      "R": {
+        "shortDesc": "Retract acceleration. Used for extruder retraction moves.",
+        "optional": true
+      },
+      "S": {
+        "shortDesc": "Legacy parameter for move acceleration. Set both printing and travel acceleration.",
+        "optional": true
+      },
+      "T": {
+        "shortDesc": "Travel acceleration. Used for moves that include no extrusion.",
+        "optional": true
+      }
+    }
+  },
+  "M205": {
+    "shortDesc": "Set Advanced Settings",
+    "category": "motion",
+    "desc": "Set various motion settings. See parameters for details.",
+    "parameters": {
+      "B": {
+        "shortDesc": "Minimum segment time (µs)",
+        "optional": true
+      },
+      "E": {
+        "shortDesc": "E max jerk (units/s)",
+        "optional": true
+      },
+      "J": {
+        "shortDesc": "Junction deviation (requires JUNCTION_DEVIATION)",
+        "optional": true
+      },
+      "S": {
+        "shortDesc": "Minimum feedrate for print moves (units/s)",
+        "optional": true
+      },
+      "T": {
+        "shortDesc": "Minimum feedrate for travel moves (units/s)",
+        "optional": true
+      },
+      "X": {
+        "shortDesc": "X max jerk (units/s)",
+        "optional": true
+      },
+      "Y": {
+        "shortDesc": "Y max jerk (units/s)",
+        "optional": true
+      },
+      "Z": {
+        "shortDesc": "Z max jerk (units/s)",
+        "optional": true
+      }
+    }
+  },
+  "M206": {
+    "shortDesc": "Set Home Offsets",
+    "category": "motion",
+    "desc": "Use M206 to apply a persistent offset to the native home position and coordinate space. This effectively shifts the coordinate space in the negative direction. See examples below.",
+    "parameters": {
+      "P": {
+        "shortDesc": "SCARA Psi offset (Requires MORGAN_SCARA)",
+        "optional": true
+      },
+      "T": {
+        "shortDesc": "SCARA Theta offset (Requires MORGAN_SCARA)",
+        "optional": true
+      },
+      "X": {
+        "shortDesc": "X home offset",
+        "optional": true
+      },
+      "Y": {
+        "shortDesc": "Y home offset",
+        "optional": true
+      },
+      "Z": {
+        "shortDesc": "Z home offset",
+        "optional": true
+      }
+    }
+  },
+  "M207": {
+    "shortDesc": "Set Firmware Retraction",
+    "category": "motion",
+    "desc": "Set lengths, feedrate, and Z lift for firmware-based retraction. See parameters below.",
+    "parameters": {
+      "F": {
+        "shortDesc": "Retract feedrate (units/min)",
+        "optional": true
+      },
+      "S": {
+        "shortDesc": "Retract length",
+        "optional": true
+      },
+      "W": {
+        "shortDesc": "Retract swap length (multi-extruder)",
+        "optional": true
+      },
+      "Z": {
+        "shortDesc": "Z lift on retraction",
+        "optional": true
+      }
+    }
+  },
+  "M208": {
+    "shortDesc": "Firmware Recover",
+    "category": "motion",
+    "desc": "Set the added lengths and feedrates for firmware-based retract recovery. The lengths set by M208 are applied in addition to the lengths set by M207 when un-retracting (aka “recovering”) the filament. The new values will apply to all subsequent G11 commands.",
+    "parameters": {
+      "F": {
+        "shortDesc": "Recover feedrate (units/min)",
+        "optional": true
+      },
+      "R": {
+        "shortDesc": "Swap recover feedrate (units/min)",
+        "optional": true
+      },
+      "S": {
+        "shortDesc": "Additional recover length. Can be negative to reduce recover length.",
+        "optional": true
+      },
+      "W": {
+        "shortDesc": "Additional recover swap length. Can be negative to reduce the length.",
+        "optional": true
+      }
+    }
+  },
+  "M209": {
+    "shortDesc": "Set Auto Retract",
+    "category": "motion",
+    "desc": "Enable or disable automatic retraction. This option is meant to help slicers that don’t support G10/G11. But it can be used to override retraction in any G-code.",
+    "parameters": {
+      "S": {
+        "shortDesc": "Set Auto-Retract on/off",
+        "optional": false
+      }
+    }
+  },
+  "M211": {
+    "shortDesc": "Software Endstops",
+    "category": "motion",
+    "desc": "Optionally enable/disable software endstops, then report the current state.",
+    "parameters": {
+      "S": {
+        "shortDesc": "Software endstops state (S1=enable S0=disable)",
+        "optional": true
+      }
+    }
+  },
+  "M217": {
+    "shortDesc": "Filament swap parameters",
+    "category": "calibration",
+    "desc": "When changing tools on some setups, one filament may be retracted before the other is primed. This command sets the length and feedrates used for the filament swap retract and prime.",
+    "parameters": {
+      "A": {
+        "shortDesc": "Migration Auto Mode. Requires TOOLCHANGE_MIGRATION_FEATURE.",
+        "optional": true
+      },
+      "B": {
+        "shortDesc": "Extra resume",
+        "optional": true
+      },
+      "E": {
+        "shortDesc": "Extra Prime Length",
+        "optional": true
+      },
+      "F": {
+        "shortDesc": "Fan speed (0-255)",
+        "optional": true
+      },
+      "G": {
+        "shortDesc": "Fan Time (seconds)",
+        "optional": true
+      },
+      "L": {
+        "shortDesc": "Last Migration. Requires TOOLCHANGE_MIGRATION_FEATURE.",
+        "optional": true
+      },
+      "P": {
+        "shortDesc": "Prime feedrate",
+        "optional": true
+      },
+      "Q": {
+        "shortDesc": "Prime active tool using TOOLCHANGE_FILAMENT_SWAP settings",
+        "optional": true
+      },
+      "R": {
+        "shortDesc": "Retract feedrate",
+        "optional": true
+      },
+      "S": {
+        "shortDesc": "Swap length",
+        "optional": true
+      },
+      "U": {
+        "shortDesc": "Unretract feedrate",
+        "optional": true
+      },
+      "V": {
+        "shortDesc": "Enable First Prime on uninitialized Nozzles. Requires TOOLCHANGE_FS_PRIME_FIRST_USED.",
+        "optional": true
+      },
+      "W": {
+        "shortDesc": "Enable Park Feature. Requires TOOLCHANGE_PARK - was SINGLENOZZLE_SWAP_PARK.",
+        "optional": true
+      },
+      "X": {
+        "shortDesc": "Park X position. Requires TOOLCHANGE_PARK - was SINGLENOZZLE_SWAP_PARK.",
+        "optional": true
+      },
+      "Y": {
+        "shortDesc": "Park Y position. Requires TOOLCHANGE_PARK - was SINGLENOZZLE_SWAP_PARK.",
+        "optional": true
+      },
+      "Z": {
+        "shortDesc": "Z Raise.",
+        "optional": true
+      }
+    }
+  },
+  "M218": {
+    "shortDesc": "Set Hotend Offset",
+    "category": "calibration",
+    "desc": "To keep nozzles aligned to the work area between tool-changes, the firmware needs to know how they relate to each other.",
+    "parameters": {
+      "T": {
+        "shortDesc": "Hotend index. Active extruder by default.",
+        "optional": true
+      },
+      "X": {
+        "shortDesc": "Hotend X offset",
+        "optional": true
+      },
+      "Y": {
+        "shortDesc": "Hotend Y offset",
+        "optional": true
+      },
+      "Z": {
+        "shortDesc": "Hotend Z offset. Requires DUAL_X_CARRIAGE or SWITCHING_NOZZLE.",
+        "optional": true
+      }
+    }
+  },
+  "M220": {
+    "shortDesc": "Set Feedrate Percentage",
+    "category": "motion",
+    "desc": "Set speed percentage factor, aka “Feed Rate” which applies to all G-code-based moves in all (X, Y, Z, and E) axes. Report the current speed percentage factor if no parameter is specified.",
+    "parameters": {
+      "B": {
+        "shortDesc": "Back up current factor",
+        "optional": true
+      },
+      "R": {
+        "shortDesc": "Restore the last-saved factor",
+        "optional": true
+      },
+      "S": {
+        "shortDesc": "Feedrate percentage",
+        "optional": true
+      }
+    }
+  },
+  "M221": {
+    "shortDesc": "Set Flow Percentage",
+    "category": "motion",
+    "desc": "Set the flow percentage, which applies to all E moves added to the planner.",
+    "parameters": {
+      "S": {
+        "shortDesc": "Feedrate percentage",
+        "optional": false
+      },
+      "T": {
+        "shortDesc": "Target extruder (requires multi-extruder). Default is the active extruder.",
+        "optional": true
+      }
+    }
+  },
+  "M226": {
+    "shortDesc": "Wait for Pin State",
+    "category": "control",
+    "desc": "Wait for a pin to have a certain value or state.",
+    "parameters": {
+      "P": {
+        "shortDesc": "Pin number",
+        "optional": false
+      },
+      "S": {
+        "shortDesc": "State 0 or 1. Default -1 for inverted.",
+        "optional": true
+      }
+    }
+  },
+  "M240": {
+    "shortDesc": "Trigger Camera",
+    "category": "extras",
+    "desc": "Trigger a camera shutter using a digital pin or by bumping a physical switch.",
+    "parameters": {
+      "A": {
+        "shortDesc": "Offset to the X return position. (Requires PHOTO_POSITION)",
+        "optional": true
+      },
+      "B": {
+        "shortDesc": "Offset to the Y return position. (Requires PHOTO_POSITION)",
+        "optional": true
+      },
+      "D": {
+        "shortDesc": "Duration to hold down the shutter switch. (Requires PHOTO_SWITCH_POSITION and PHOTO_SWITCH_MS)",
+        "optional": true
+      },
+      "F": {
+        "shortDesc": "Feedrate for the main photo moves. If omitted, the homing feedrate will be used. (Requires PHOTO_POSITION)",
+        "optional": true
+      },
+      "I": {
+        "shortDesc": "Shutter switch X position. If omitted, the photo move X position applies. (Requires PHOTO_SWITCH_POSITION)",
+        "optional": true
+      },
+      "J": {
+        "shortDesc": "Shutter switch Y position. If omitted, the photo move Y position applies. (Requires PHOTO_SWITCH_POSITION)",
+        "optional": true
+      },
+      "P": {
+        "shortDesc": "Delay after pressing the shutter switch. (Requires PHOTO_SWITCH_POSITION and PHOTO_SWITCH_MS)",
+        "optional": true
+      },
+      "R": {
+        "shortDesc": "Retract/recover length. (Requires PHOTO_POSITION)",
+        "optional": true
+      },
+      "S": {
+        "shortDesc": "Retract/recover feedrate. (Requires PHOTO_POSITION)",
+        "optional": true
+      },
+      "X": {
+        "shortDesc": "Main photo move X position. (Requires PHOTO_POSITION)",
+        "optional": true
+      },
+      "Y": {
+        "shortDesc": "Main photo move Y position. (Requires PHOTO_POSITION)",
+        "optional": true
+      },
+      "Z": {
+        "shortDesc": "Main photo move Z raise. (Requires PHOTO_POSITION)",
+        "optional": true
+      }
+    }
+  },
+  "M250": {
+    "shortDesc": "LCD Contrast",
+    "category": "lcd",
+    "desc": "Set and/or get the LCD contrast. The value is constrained based on the LCD.",
+    "parameters": {
+      "C": {
+        "shortDesc": "Contrast value",
+        "optional": true
+      }
+    }
+  },
+  "M255": {
+    "shortDesc": "LCD Sleep/Backlight Timeout",
+    "category": "lcd",
+    "desc": "Set and/or get the LCD sleep / backlight timeout, in minutes. The display will go blank to save energy after your specified period has elapsed with no activity. The screen will wake up if it needs to display an important message.",
+    "parameters": {
+      "S": {
+        "shortDesc": "Timeout delay in minutes.",
+        "optional": false
+      }
+    }
+  },
+  "M256": {
+    "shortDesc": "LCD Brightness",
+    "category": "lcd",
+    "desc": "Set and/or get the LCD brightness. The value is constrained based on the LCD, but typically a value of 0 is the dimmest and 255 is the brightest.",
+    "parameters": {
+      "B": {
+        "shortDesc": "Brightness value (0 - 255)",
+        "optional": true
+      }
+    }
+  },
+  "M260": {
+    "shortDesc": "I2C Send",
+    "category": "i2c",
+    "desc": "Utility to send data over the I2C bus.",
+    "parameters": {
+      "A": {
+        "shortDesc": "The bus address to send to",
+        "optional": true
+      },
+      "B": {
+        "shortDesc": "The byte to add to the buffer",
+        "optional": true
+      },
+      "R": {
+        "shortDesc": "Reset and rewind the I2C buffer",
+        "optional": true
+      },
+      "S": {
+        "shortDesc": "Send flag. Flush the buffer to the bus.",
+        "optional": true
+      }
+    }
+  },
+  "M261": {
+    "shortDesc": "I2C Request",
+    "category": "i2c",
+    "desc": "Request bytes from the I2C bus and echo them to the host. To find out how to do more useful things with I2C see the I2C master / slave article.",
+    "parameters": {
+      "A": {
+        "shortDesc": "The bus address to request bytes from",
+        "optional": false
+      },
+      "B": {
+        "shortDesc": "The number of bytes to request",
+        "optional": false
+      },
+      "S": {
+        "shortDesc": "Output style. Default is 0 (raw echo) if nothing else is given.",
+        "optional": true
+      }
+    }
+  },
+  "M280": {
+    "shortDesc": "Servo Position",
+    "category": "servos",
+    "desc": "Set or get the position of a servo.",
+    "parameters": {
+      "P": {
+        "shortDesc": "Servo index to set or get",
+        "optional": false
+      },
+      "S": {
+        "shortDesc": "Servo position to set. Omit to read the current position.",
+        "optional": false
+      }
+    }
+  },
+  "M281": {
+    "shortDesc": "Edit Servo Angles",
+    "category": "servos",
+    "desc": "Set or get the position of a servo. Without L or U the current values will be reported.",
+    "parameters": {
+      "L": {
+        "shortDesc": "Deploy angle in degrees.",
+        "optional": true
+      },
+      "P": {
+        "shortDesc": "Servo index to update / report.",
+        "optional": false
+      },
+      "U": {
+        "shortDesc": "Stow angle in degrees.",
+        "optional": true
+      }
+    }
+  },
+  "M282": {
+    "shortDesc": "Detach Servo",
+    "category": "servos",
+    "desc": "Detach a servo, which turns off its power. The servo will be attached (powered up) before its next move.",
+    "parameters": {
+      "P": {
+        "shortDesc": "Index of the servo to detach.",
+        "optional": false
+      }
+    }
+  },
+  "M290": {
+    "shortDesc": "Babystep",
+    "category": "calibration",
+    "desc": "Apply babysteps to one or more axes using current units. Offsets applied with M290 aren’t added to the current coordinates, but are intended for making small adjustments, especially in the Z axis, at the start of a print.",
+    "parameters": {
+      "P": {
+        "shortDesc": "Use P0 to leave the Probe Z Offset unaffected. (Requires BABYSTEP_ZPROBE_OFFSET)",
+        "optional": true
+      },
+      "S": {
+        "shortDesc": "Alias for Z",
+        "optional": true
+      },
+      "X": {
+        "shortDesc": "A distance on the X axis",
+        "optional": true
+      },
+      "Y": {
+        "shortDesc": "A distance on the Y axis",
+        "optional": true
+      },
+      "Z": {
+        "shortDesc": "A distance on the Z axis",
+        "optional": true
+      }
+    }
+  },
+  "M300": {
+    "shortDesc": "Play Tone",
+    "category": "lcd",
+    "desc": "Add a tone to the tone queue.",
+    "parameters": {
+      "P": {
+        "shortDesc": "Duration (1ms)",
+        "optional": true
+      },
+      "S": {
+        "shortDesc": "Frequency (260Hz)",
+        "optional": true
+      }
+    }
+  },
+  "M301": {
+    "shortDesc": "Set Hotend PID",
+    "category": "thermal",
+    "desc": "Set the values that control the PID loop for a hotend.",
+    "parameters": {
+      "C": {
+        "shortDesc": "C term (requires PID_EXTRUSION_SCALING)",
+        "optional": true
+      },
+      "D": {
+        "shortDesc": "Derivative value",
+        "optional": true
+      },
+      "E": {
+        "shortDesc": "Extruder index to set. Default 0.",
+        "optional": true
+      },
+      "F": {
+        "shortDesc": "F term (requires PID_FAN_SCALING)",
+        "optional": true
+      },
+      "I": {
+        "shortDesc": "Integral value",
+        "optional": true
+      },
+      "L": {
+        "shortDesc": "Extrusion scaling queue length (requires PID_EXTRUSION_SCALING)",
+        "optional": true
+      },
+      "P": {
+        "shortDesc": "Proportional value",
+        "optional": true
+      }
+    }
+  },
+  "M302": {
+    "shortDesc": "Cold Extrude",
+    "category": "thermal",
+    "desc": "Set the minimum extrusion temperature, potentially allowing E movement at temperatures below the melting point of the material.",
+    "parameters": {
+      "P": {
+        "shortDesc": "Flag to allow extrusion at any temperature",
+        "optional": true
+      },
+      "S": {
+        "shortDesc": "Minimum temperature for safe extrusion",
+        "optional": true
+      }
+    }
+  },
+  "M303": {
+    "shortDesc": "PID autotune",
+    "category": "thermal",
+    "desc": "This command initiates a process of heating and cooling to determine the proper PID values for the specified hotend or the heated bed.",
+    "parameters": {
+      "C": {
+        "shortDesc": "Cycles. At least 3 cycles are required. Default 5.",
+        "optional": false
+      },
+      "D": {
+        "shortDesc": "Toggle activation of PID_DEBUG output.",
+        "optional": false
+      },
+      "E": {
+        "shortDesc": "Hotend index (-1 for heated bed). Default 0.",
+        "optional": true
+      },
+      "S": {
+        "shortDesc": "Target temperature",
+        "optional": false
+      },
+      "U": {
+        "shortDesc": "Use PID result. (Otherwise just print it out.)",
+        "optional": false
+      }
+    }
+  },
+  "M304": {
+    "shortDesc": "Set Bed PID",
+    "category": "thermal",
+    "desc": "Set the values that control the PID loop for the heated bed.",
+    "parameters": {
+      "D": {
+        "shortDesc": "Derivative value",
+        "optional": true
+      },
+      "I": {
+        "shortDesc": "Integral value",
+        "optional": true
+      },
+      "P": {
+        "shortDesc": "Proportional value",
+        "optional": true
+      }
+    }
+  },
+  "M305": {
+    "shortDesc": "User Thermistor Parameters",
+    "category": "thermal",
+    "desc": "Allows for custom temperature sensor.",
+    "parameters": {
+      "B": {
+        "shortDesc": "Thermistor “beta” value",
+        "optional": true
+      },
+      "C": {
+        "shortDesc": "Steinhart-Hart Coefficient ‘C’",
+        "optional": true
+      },
+      "P": {
+        "shortDesc": "Thermistor table index",
+        "optional": true
+      },
+      "R": {
+        "shortDesc": "Pullup resistor value",
+        "optional": true
+      },
+      "T": {
+        "shortDesc": "Resistance at 25C",
+        "optional": true
+      }
+    }
+  },
+  "M306": {
+    "shortDesc": "Model predictive temperature control",
+    "category": "thermal",
+    "parameters": {
+      "A": {
+        "shortDesc": "Ambient heat transfer coefficient (no fan).",
+        "optional": true
+      },
+      "C": {
+        "shortDesc": "Heatblock Capacity (joules/kelvin)",
+        "optional": true
+      },
+      "E": {
+        "shortDesc": "Extruder index. If omitted, the command applies to the active extruder.",
+        "optional": true
+      },
+      "F": {
+        "shortDesc": "Ambient heat transfer coefficient (fan on full).",
+        "optional": true
+      },
+      "H": {
+        "shortDesc": "Filament Heat Capacity (joules/kelvin/mm)",
+        "optional": true
+      },
+      "P": {
+        "shortDesc": "Heater power in watts",
+        "optional": true
+      },
+      "R": {
+        "shortDesc": "Sensor responsiveness (= transfer coefficient / heat capacity).",
+        "optional": true
+      },
+      "T": {
+        "shortDesc": "Autotune the selected extruder.",
+        "optional": true
+      }
+    }
+  },
+  "M350": {
+    "shortDesc": "Set micro-stepping",
+    "category": "control",
+    "desc": "If your board has digital micro-stepping pins (X_MS1, Y_MS1, etc.), use this command to set the micro-steps.",
+    "parameters": {
+      "B": {
+        "shortDesc": "Set micro-stepping for the 5th stepper driver.",
+        "optional": true
+      },
+      "E": {
+        "shortDesc": "Set micro-stepping for the E0 stepper driver.",
+        "optional": true
+      },
+      "S": {
+        "shortDesc": "Set micro-stepping for all 5 stepper drivers.",
+        "optional": true
+      },
+      "X": {
+        "shortDesc": "Set micro-stepping for the X stepper driver.",
+        "optional": true
+      },
+      "Y": {
+        "shortDesc": "Set micro-stepping for the Y stepper driver.",
+        "optional": true
+      },
+      "Z": {
+        "shortDesc": "Set micro-stepping for the Z stepper driver.",
+        "optional": true
+      }
+    }
+  },
+  "M351": {
+    "shortDesc": "Set Microstep Pins",
+    "category": "control",
+    "desc": "If your board has digital micro-stepping pins (X_MS1, Y_MS1, etc.), use this command to set the micro-steps.",
+    "parameters": {
+      "B": {
+        "shortDesc": "Set the MS1/2 pin for the 5th stepper driver.",
+        "optional": true
+      },
+      "E": {
+        "shortDesc": "Set the MS1/2 pin for the E stepper driver.",
+        "optional": true
+      },
+      "S": {
+        "shortDesc": "Select the pin to set for all specified axes.",
+        "optional": false
+      },
+      "X": {
+        "shortDesc": "Set the MS1/2 pin for the X stepper driver.",
+        "optional": true
+      },
+      "Y": {
+        "shortDesc": "Set the MS1/2 pin for the Y stepper driver.",
+        "optional": true
+      },
+      "Z": {
+        "shortDesc": "Set the MS1/2 pin for the Z stepper driver.",
+        "optional": true
+      }
+    }
+  },
+  "M355": {
+    "shortDesc": "Case Light Control",
+    "category": "control",
+    "desc": "Set the case light power state and/or brightness.",
+    "parameters": {
+      "P": {
+        "shortDesc": "Set the brightness factor from 0 to 255.",
+        "optional": true
+      },
+      "S": {
+        "shortDesc": "Turn the case light on or off.",
+        "optional": true
+      }
+    }
+  },
+  "M360": {
+    "shortDesc": "SCARA Theta A",
+    "category": "control",
+    "desc": "Move the nozzle to SCARA calibration position Theta 0 (A0 B120) for calibration of “zero degrees.”",
+    "parameters": {}
+  },
+  "M361": {
+    "shortDesc": "SCARA Theta-B",
+    "category": "control",
+    "desc": "Move the nozzle to SCARA Theta-B calibration position Theta 90 (A90 B130) for calibration of “90 degrees steps-per-degree.”",
+    "parameters": {}
+  },
+  "M362": {
+    "shortDesc": "SCARA Psi-A",
+    "category": "control",
+    "desc": "Move the nozzle to SCARA Psi-A calibration position Psi 0 (A60 B180) for calibration of “zero degrees.”",
+    "parameters": {}
+  },
+  "M363": {
+    "shortDesc": "SCARA Psi-B",
+    "category": "control",
+    "desc": "Move the nozzle to SCARA Psi-B calibration position Psi 90 (A50 B90) for calibration of “90 degrees steps-per-degree.”",
+    "parameters": {}
+  },
+  "M364": {
+    "shortDesc": "SCARA Psi-C",
+    "category": "control",
+    "desc": "Move the nozzle to SCARA Psi-C calibration position Theta-Psi 90 (A45 B135) for calibration of “90 degrees to Theta.”",
+    "parameters": {}
+  },
+  "M380": {
+    "shortDesc": "Activate Solenoid",
+    "category": "none",
+    "desc": "Activate the solenoid on the active extruder.",
+    "parameters": {
+      "S": {
+        "shortDesc": "Solenoid index (Requires MANUAL_SOLENOID_CONTROL)",
+        "optional": true
+      }
+    }
+  },
+  "M381": {
+    "shortDesc": "Deactivate Solenoids",
+    "category": "none",
+    "desc": "Deactivate all solenoids on all extruders.",
+    "parameters": {
+      "S": {
+        "shortDesc": "Solenoid index (Requires MANUAL_SOLENOID_CONTROL)",
+        "optional": true
+      }
+    }
+  },
+  "M400": {
+    "shortDesc": "Finish Moves",
+    "category": "motion",
+    "desc": "This command causes G-code processing to pause and wait in a loop until all moves in the planner are completed.",
+    "parameters": {}
+  },
+  "M401": {
+    "shortDesc": "Deploy Probe",
+    "category": "calibration",
+    "desc": "Deploy the bed probe. The Z axis may raise up to make room for the probe to deploy.",
+    "parameters": {
+      "H": {
+        "shortDesc": "Report the current BLTouch High Speed (HS) Mode state and exit.",
+        "optional": true
+      },
+      "S": {
+        "shortDesc": "Set the BLTouch High Speed (HS) Mode state and exit without deploy.",
+        "optional": true
+      }
+    }
+  },
+  "M402": {
+    "shortDesc": "Stow Probe",
+    "category": "calibration",
+    "desc": "Stow the bed probe. The Z axis may raise up to make room for the probe to stow.",
+    "parameters": {}
+  },
+  "M403": {
+    "shortDesc": "MMU2 Filament Type",
+    "category": "control",
+    "desc": "Set the filament type for a Průša MMU2 (or compatible) material slot.",
+    "parameters": {
+      "E": {
+        "shortDesc": "The MMU2 slot [0..4] to set the material type for",
+        "optional": false
+      },
+      "F": {
+        "shortDesc": "The filament type.",
+        "optional": false
+      }
+    }
+  },
+  "M404": {
+    "shortDesc": "Set Filament Diameter",
+    "category": "control",
+    "desc": "Report or set the nominal filament width, such as 1.75 or 3.00.",
+    "parameters": {
+      "W": {
+        "shortDesc": "The new nominal width value",
+        "optional": true
+      }
+    }
+  },
+  "M405": {
+    "shortDesc": "Filament Width Sensor On",
+    "category": "control",
+    "desc": "Turn on the filament width sensor and start using it to do flow control. Initially, the filament between the sensor and the hot-end will be treated as the nominal width.",
+    "parameters": {
+      "D": {
+        "shortDesc": "Distance from measurement point to hot end. If not given, the previous value will be used. The default startup value is set by MEASUREMENT_DELAY_CM.",
+        "optional": true
+      }
+    }
+  },
+  "M406": {
+    "shortDesc": "Filament Width Sensor Off",
+    "category": "control",
+    "desc": "Turn off the filament width sensor and stop using it to do flow control.",
+    "parameters": {}
+  },
+  "M407": {
+    "shortDesc": "Filament Width",
+    "category": "control",
+    "desc": "Report the current measured filament width to the host.",
+    "parameters": {}
+  },
+  "M410": {
+    "shortDesc": "Quickstop",
+    "category": "motion",
+    "desc": "Stop all steppers instantly. Since there will be no deceleration, steppers are expected to be out of position after this command.",
+    "parameters": {}
+  },
+  "M412": {
+    "shortDesc": "Filament Runout",
+    "category": "control",
+    "desc": "Get or set filament runout status and distance. Omit all parameters to get a report of the current stats. Enable or disable filament runout detection with S and set distance with D. When filament sensors are enabled, Marlin will respond to a filament runout by running the configured G-code (usually M600 Filament Change). When filament runout detection is disabled, Marlin will take no action for filament runout.",
+    "parameters": {
+      "D": {
+        "shortDesc": "Set the filament runout distance.",
+        "optional": true
+      },
+      "H": {
+        "shortDesc": "Flag to enable or disable host handling of a filament runout.",
+        "optional": true
+      },
+      "R": {
+        "shortDesc": "Flag to reset the filament runout sensor. Not needed with S.",
+        "optional": true
+      },
+      "S": {
+        "shortDesc": "Flag to enable or disable Filament Runout Detection. If omitted, the current enabled state will be reported.",
+        "optional": true
+      }
+    }
+  },
+  "M413": {
+    "shortDesc": "Power-loss Recovery",
+    "category": "control",
+    "desc": "M413 is used to turn the Power-loss Recovery feature on and off. When Power-loss Recovery is enabled and Marlin is running a print job from the SD Card or Flash Drive, it periodically saves the print job state to the SD Card / Flash Drive. If the machine crashes or a power outage occurs, Marlin presents the option to resume the interrupted print job.",
+    "parameters": {
+      "S": {
+        "shortDesc": "Flag to enable or disable Power-loss Recovery. If omitted, the current enabled state will be reported.",
+        "optional": true
+      }
+    }
+  },
+  "M420": {
+    "shortDesc": "Bed Leveling State",
+    "category": "motion",
+    "desc": "Get and/or set bed leveling state. For mesh-based leveling systems use Z parameter to set the Z Fade Height.",
+    "parameters": {
+      "C": {
+        "shortDesc": "Center the mesh on the mean of the lowest and highest points",
+        "optional": true
+      },
+      "L": {
+        "shortDesc": "Load mesh from EEPROM index (Requires AUTO_BED_LEVELING_UBL and EEPROM_SETTINGS)",
+        "optional": true
+      },
+      "S": {
+        "shortDesc": "Set enabled or disabled. A valid mesh is required to enable bed leveling. If the mesh is invalid / incomplete leveling will not be enabled.",
+        "optional": true
+      },
+      "T": {
+        "shortDesc": "Format to print the mesh data",
+        "optional": true
+      },
+      "V": {
+        "shortDesc": "Verbose: Print the stored mesh / matrix data",
+        "optional": true
+      },
+      "Z": {
+        "shortDesc": "Set Z fade height (Requires ENABLE_LEVELING_FADE_HEIGHT)",
+        "optional": true
+      }
+    }
+  },
+  "M421": {
+    "shortDesc": "Set Mesh Value",
+    "category": "motion",
+    "desc": "This command is used to set a single Z value for a mesh point in the stored bed leveling data.",
+    "parameters": {
+      "C": {
+        "shortDesc": "Set the mesh point closest to the current nozzle position (AUTO_BED_LEVELING_UBL only)",
+        "optional": true
+      },
+      "I": {
+        "shortDesc": "X index into the mesh array",
+        "optional": true
+      },
+      "J": {
+        "shortDesc": "Y index into the mesh array",
+        "optional": true
+      },
+      "N": {
+        "shortDesc": "Set the mesh point to undefined (AUTO_BED_LEVELING_UBL only)",
+        "optional": true
+      },
+      "Q": {
+        "shortDesc": "A value to add to the existing Z value",
+        "optional": true
+      },
+      "X": {
+        "shortDesc": "X position (which should be very close to a grid line) (MESH_BED_LEVELING only)",
+        "optional": true
+      },
+      "Y": {
+        "shortDesc": "Y position (which should be very close to a grid line) (MESH_BED_LEVELING only)",
+        "optional": true
+      },
+      "Z": {
+        "shortDesc": "The new Z value to set",
+        "optional": true
+      }
+    }
+  },
+  "M422": {
+    "shortDesc": "Set Z Motor XY",
+    "category": "calibration",
+    "desc": "Set an XY probe or known position for a given Z Stepper. Either the S or W parameter must be given, along with X and Y positions. The W parameter exists only when Z_STEPPER_ALIGN_STEPPER_XY is defined, providing known stepper positions.",
+    "parameters": {
+      "R": {
+        "shortDesc": "Reset alignment and known points to the defaults. This will also be done by M502.",
+        "optional": true
+      },
+      "S": {
+        "shortDesc": "One-based index of a Z-Stepper whose probing-point will be set.",
+        "optional": true
+      },
+      "W": {
+        "shortDesc": "One-based index of a Z-Stepper whose known position will be set.",
+        "optional": true
+      },
+      "X": {
+        "shortDesc": "X position",
+        "optional": true
+      },
+      "Y": {
+        "shortDesc": "Y position",
+        "optional": true
+      }
+    }
+  },
+  "M423": {
+    "shortDesc": "X Twist Compensation",
+    "category": "calibration",
+    "desc": "Use M423 to reset, modify, or report X-Twist Compensation data.",
+    "parameters": {
+      "A": {
+        "shortDesc": "Set the X-Axis Twist Compensation starting X position.",
+        "optional": true
+      },
+      "I": {
+        "shortDesc": "Set the X-Axis Twist Compensation X-spacing.",
+        "optional": true
+      },
+      "R": {
+        "shortDesc": "Reset the Twist Compensation array to the configured default values.",
+        "optional": true
+      },
+      "X": {
+        "shortDesc": "Zero-based index into the Twist Compensation array. Requires a Z value.",
+        "optional": true
+      },
+      "Z": {
+        "shortDesc": "A Z-offset value to set in the Twist Compensation array. Requires an X index.",
+        "optional": true
+      }
+    }
+  },
+  "M425": {
+    "shortDesc": "Backlash compensation",
+    "category": "calibration",
+    "desc": "Backlash compensation will add extra steps to one or more segments whenever a motor reverses direction.",
+    "parameters": {
+      "F": {
+        "shortDesc": "Enable or disables backlash correction, or sets an intermediate fade-out (0.0 = none; 1.0 = 100%)",
+        "optional": true
+      },
+      "S": {
+        "shortDesc": "Distance over which backlash correction is spread",
+        "optional": true
+      },
+      "X": {
+        "shortDesc": "Set the backlash distance on X (mm; 0 to disable)",
+        "optional": true
+      },
+      "Y": {
+        "shortDesc": "Set the backlash distance on Y (mm; 0 to disable)",
+        "optional": true
+      },
+      "Z": {
+        "shortDesc": "When MEASURE_BACKLASH_WHEN_PROBING is enabled, loads the measured backlash into the backlash distance parameter",
+        "optional": true
+      }
+    }
+  },
+  "M428": {
+    "shortDesc": "Home Offsets Here",
+    "category": "motion",
+    "desc": "Use M428 to set a persistent offset to the native home position and coordinate space by assigning the current position as the native home position. See the example below.",
+    "parameters": {}
+  },
+  "M430": {
+    "shortDesc": "Power Monitor",
+    "category": "thermal",
+    "desc": "Enable/disable power monitor on LCD display. Report current/amps (A), voltage (V) and watts (W) if no parameters.",
+    "parameters": {
+      "I": {
+        "shortDesc": "display current (A) on LCD",
+        "optional": true
+      },
+      "V": {
+        "shortDesc": "toggle display voltage (V) on LCD",
+        "optional": true
+      },
+      "W": {
+        "shortDesc": "display power/watts (W) on LCD",
+        "optional": true
+      }
+    }
+  },
+  "M486": {
+    "shortDesc": "Cancel Objects",
+    "category": "sdcard",
+    "desc": "Use M486 to identify and cancel objects during a multi-object print job.",
+    "parameters": {
+      "C": {
+        "shortDesc": "Cancel the current object.",
+        "optional": true
+      },
+      "P": {
+        "shortDesc": "Cancel the object with the given index.",
+        "optional": true
+      },
+      "S": {
+        "shortDesc": "Set the index of the current object. If the object with the given index has been canceled, this will cause the firmware to skip to the next object. The value -1 is used to indicate something that isn’t an object and shouldn’t be skipped.",
+        "optional": true
+      },
+      "T": {
+        "shortDesc": "Reset the state and set the number of objects.",
+        "optional": true
+      },
+      "U": {
+        "shortDesc": "Un-cancel the object with the given index. This command will be ignored if the object has already been skipped.",
+        "optional": true
+      }
+    }
+  },
+  "M500": {
+    "shortDesc": "Save Settings",
+    "category": "eeprom",
+    "desc": "Save all configurable settings to EEPROM.",
+    "parameters": {}
+  },
+  "M501": {
+    "shortDesc": "Restore Settings",
+    "category": "eeprom",
+    "desc": "Load all saved settings from EEPROM.",
+    "parameters": {}
+  },
+  "M502": {
+    "shortDesc": "Factory Reset",
+    "category": "eeprom",
+    "desc": "Reset all configurable settings to their factory defaults.",
+    "parameters": {}
+  },
+  "M503": {
+    "shortDesc": "Report Settings",
+    "category": "eeprom",
+    "desc": "Print a concise report of all runtime-configurable settings (in SRAM) to the host console. This command reports the active settings which may or may not be the same as those stored in the EEPROM.",
+    "parameters": {
+      "C": {
+        "shortDesc": "Save the embedded configuration ZIP file to the SD Card or Flash Drive.",
+        "optional": true
+      },
+      "S": {
+        "shortDesc": "Detailed output flag. (true if omitted.)",
+        "optional": true
+      }
+    }
+  },
+  "M504": {
+    "shortDesc": "Validate EEPROM contents",
+    "category": "eeprom",
+    "desc": "Validate the contents of the EEPROM.",
+    "parameters": {}
+  },
+  "M510": {
+    "shortDesc": "Lock Machine",
+    "category": "security",
+    "desc": "Lock the machine. When the machine is locked a passcode is required to unlock it. Use M511 P with your passcode to unlock the machine.option.",
+    "parameters": {}
+  },
+  "M511": {
+    "shortDesc": "Unlock Machine",
+    "category": "security",
+    "desc": "Check the given passcode and unlock the machine if it is correct. Otherwise, delay for a period of time before allowing another attempt.",
+    "parameters": {
+      "P": {
+        "shortDesc": "The passcode to try.",
+        "optional": false
+      }
+    }
+  },
+  "M512": {
+    "shortDesc": "Set Passcode",
+    "category": "security",
+    "desc": "Check the passcode given with P and if it is correct clear the passcode. If a new passcode is given with S then set a new passcode.",
+    "parameters": {
+      "P": {
+        "shortDesc": "Current passcode. This must be correct to clear or change the passcode.",
+        "optional": false
+      },
+      "S": {
+        "shortDesc": "If S is included the new passcode will be set to this value.",
+        "optional": true
+      }
+    }
+  },
+  "M524": {
+    "shortDesc": "Abort SD print",
+    "category": "sdcard",
+    "desc": "Abort an SD print in progress and turn off all heaters.",
+    "parameters": {}
+  },
+  "M540": {
+    "shortDesc": "Endstops Abort SD",
+    "category": "sdcard",
+    "desc": "Set whether SD printing should abort in the event of any endstop being triggered. This provides a fast way to abort a print in the event of mechanical failure such as loose couplings, lost steps, diverted axes, binding, etc., which lead to axes being very far out of position.",
+    "parameters": {
+      "S": {
+        "shortDesc": "Whether (1) or not (0) to abort SD printing on endstop hit.",
+        "optional": false
+      }
+    }
+  },
+  "M569": {
+    "shortDesc": "Set TMC stepping mode",
+    "category": "trinamic",
+    "desc": "Toggle between stealthChop and spreadCycle on supporting TMC drivers.",
+    "parameters": {
+      "E": {
+        "shortDesc": "Stepping mode for the E0 stepper",
+        "optional": true
+      },
+      "I": {
+        "shortDesc": "Index for multiple steppers. Use I1 for X2, Y2, and/or Z2, and I2 for Z3.",
+        "optional": true
+      },
+      "T": {
+        "shortDesc": "Index (tool) number for the E axis. If not specified, the E0 extruder.",
+        "optional": true
+      },
+      "X": {
+        "shortDesc": "Stepping mode for the X stepper",
+        "optional": true
+      },
+      "Y": {
+        "shortDesc": "Stepping mode for the Y stepper",
+        "optional": true
+      },
+      "Z": {
+        "shortDesc": "Stepping mode for the Z stepper",
+        "optional": true
+      }
+    }
+  },
+  "M575": {
+    "shortDesc": "Serial baud rate",
+    "category": "hosts",
+    "desc": "Change the baud rate of one serial port or all serial ports. This command will interrupt serial communication to the host and may reset the firmware when the host reconnects at the new baud rate.",
+    "parameters": {
+      "B": {
+        "shortDesc": "The baud rate to set. Permitted values are:",
+        "optional": false
+      },
+      "P": {
+        "shortDesc": "Serial Port index. Omit for all serial ports.",
+        "optional": true
+      }
+    }
+  },
+  "M593": {
+    "shortDesc": "Input Shaping",
+    "category": "motion",
+    "desc": "Set the Input Shaping damping factor and/or frequency (in Hertz) for axes that support it. Use M593 with no parameters to report the current settings.",
+    "parameters": {
+      "D": {
+        "shortDesc": "Set the zeta/damping factor for the specified axes. If X and Y are omitted, both will be set.",
+        "optional": true
+      },
+      "F": {
+        "shortDesc": "Set the damping frequency for the specified axes. If X and Y are omitted, both will be set.",
+        "optional": true
+      },
+      "X": {
+        "shortDesc": "Flag to set the X axis value. If X and Y are omitted, both will be set.",
+        "optional": true
+      },
+      "Y": {
+        "shortDesc": "Flag to set the Y axis value. If X and Y are omitted, both will be set.",
+        "optional": true
+      }
+    }
+  },
+  "M600": {
+    "shortDesc": "Filament Change",
+    "category": "filament",
+    "desc": "The M600 command initiates the filament change procedure. The basic procedure will move the print head away from the print, eject the filament, wait for new filament to be inserted and the user to confirm, load and prime the filament, and continue with the print. M600 may be initiated automatically if a filament runout sensor is installed.",
+    "parameters": {
+      "B": {
+        "shortDesc": "Number of beeps to alert user of filament change (default FILAMENT_CHANGE_ALERT_BEEPS)",
+        "optional": true
+      },
+      "E": {
+        "shortDesc": "Retract before moving to change position (negative, default PAUSE_PARK_RETRACT_LENGTH)",
+        "optional": true
+      },
+      "L": {
+        "shortDesc": "Load length, longer for bowden (negative)",
+        "optional": true
+      },
+      "R": {
+        "shortDesc": "Resume temperature. (AUTOTEMP: the min auto-temperature.)",
+        "optional": true
+      },
+      "T": {
+        "shortDesc": "Target extruder",
+        "optional": true
+      },
+      "U": {
+        "shortDesc": "Amount of retraction for unload (negative)",
+        "optional": true
+      },
+      "X": {
+        "shortDesc": "X position for filament change",
+        "optional": true
+      },
+      "Y": {
+        "shortDesc": "Y position for filament change",
+        "optional": true
+      },
+      "Z": {
+        "shortDesc": "Z relative lift for filament change position",
+        "optional": true
+      }
+    }
+  },
+  "M603": {
+    "shortDesc": "Configure Filament Change",
+    "category": "filament",
+    "desc": "The M603 command configures automatic filament change parameters.",
+    "parameters": {
+      "L": {
+        "shortDesc": "Load length, longer for bowden (negative)",
+        "optional": true
+      },
+      "T": {
+        "shortDesc": "Target extruder",
+        "optional": true
+      },
+      "U": {
+        "shortDesc": "Amount of retraction for unload (negative)",
+        "optional": true
+      }
+    }
+  },
+  "M605": {
+    "shortDesc": "Multi Nozzle Mode",
+    "category": "control",
+    "desc": "Set the behavior mode for multiple fixed nozzles such as a Dual Extruder or DUAL_X_CARRIAGE machine.",
+    "parameters": {
+      "E": {
+        "shortDesc": "Last nozzle index to include in the duplication set. 0 disables duplication. (Requires MULTI_NOZZLE_DUPLICATION)",
+        "optional": true
+      },
+      "P": {
+        "shortDesc": "Bit-mask of nozzles to include in the duplication set. 0 disables duplication. Bit 1 is E0, Bit 2 is E1 … Bit n is E(n-1). (Requires MULTI_NOZZLE_DUPLICATION)",
+        "optional": true
+      },
+      "R": {
+        "shortDesc": "Temperature difference to apply to E1. (Requires DUAL_X_CARRIAGE)",
+        "optional": true
+      },
+      "S": {
+        "shortDesc": "Select the pin to set for all specified axes.",
+        "optional": false
+      },
+      "X": {
+        "shortDesc": "X distance between dual X carriages. (Requires DUAL_X_CARRIAGE)",
+        "optional": true
+      }
+    }
+  },
+  "M665": {
+    "shortDesc": "SCARA Configuration",
+    "category": "none",
+    "desc": "Configure SCARA geometry values",
+    "parameters": {
+      "A": {
+        "shortDesc": "Theta-Psi offset, alias for P",
+        "optional": true
+      },
+      "B": {
+        "shortDesc": "Theta offset, alias for T",
+        "optional": true
+      },
+      "P": {
+        "shortDesc": "Theta-Psi offset, added to the shoulder (A/X) angle",
+        "optional": true
+      },
+      "S": {
+        "shortDesc": "Segments per second",
+        "optional": true
+      },
+      "T": {
+        "shortDesc": "Theta offset, added to the elbow (B/Y) angle",
+        "optional": true
+      },
+      "X": {
+        "shortDesc": "Theta-Psi offset, alias for P",
+        "optional": true
+      },
+      "Y": {
+        "shortDesc": "Theta offset, alias for T",
+        "optional": true
+      }
+    }
+  },
+  "M666": {
+    "shortDesc": "Set dual endstop offsets",
+    "category": "calibration",
+    "desc": "Use the M666 command to adjust the offsets for dual (or multiple) endstops.",
+    "parameters": {
+      "X": {
+        "shortDesc": "Offset for the X axis endstops",
+        "optional": true
+      },
+      "Y": {
+        "shortDesc": "Offset for the Y axis endstops",
+        "optional": true
+      },
+      "Z": {
+        "shortDesc": "Offset for the Z axis endstops",
+        "optional": true
+      }
+    }
+  },
+  "M672": {
+    "shortDesc": "Duet Smart Effector sensitivity",
+    "category": "control",
+    "desc": "Set or reset Duet Smart Effector sensitivity.",
+    "parameters": {
+      "R": {
+        "shortDesc": "Revert sensitivity to factory settings",
+        "optional": true
+      },
+      "S": {
+        "shortDesc": "Set sensitivity (0-255)",
+        "optional": true
+      }
+    }
+  },
+  "M701": {
+    "shortDesc": "Load filament",
+    "category": "control",
+    "desc": "Load filament into the active extruder. By default this will use the configured ADVANCED_PAUSE_FEATURE settings.",
+    "parameters": {
+      "L": {
+        "shortDesc": "Extrude distance for insertion (positive value) (manual reload)",
+        "optional": false
+      },
+      "T": {
+        "shortDesc": "Optional extruder index. Current extruder if omitted.",
+        "optional": true
+      },
+      "Z": {
+        "shortDesc": "Move the Z axis by this distance",
+        "optional": true
+      }
+    }
+  },
+  "M702": {
+    "shortDesc": "Unload filament",
+    "category": "control",
+    "desc": "Unload filament. By default this command will use the configured ADVANCED_PAUSE_FEATURE settings.",
+    "parameters": {
+      "T": {
+        "shortDesc": "Optional extruder number. If omitted, current extruder (or ALL extruders with FILAMENT_UNLOAD_ALL_EXTRUDERS).",
+        "optional": true
+      },
+      "U": {
+        "shortDesc": "Retract distance for removal (manual reload)",
+        "optional": false
+      },
+      "Z": {
+        "shortDesc": "Move the Z axis by this distance",
+        "optional": true
+      }
+    }
+  },
+  "M710": {
+    "shortDesc": "Controller Fan settings",
+    "category": "thermal",
+    "desc": "Set one or more Controller Fan options. Without any parameters report the current settings.",
+    "parameters": {
+      "A": {
+        "shortDesc": "Set whether the fan speed is set automatically. When turned off the controller fan speed will remain where it is.",
+        "optional": true
+      },
+      "D": {
+        "shortDesc": "Set the extra duration to keep the fan speed high after motors are turned off.",
+        "optional": true
+      },
+      "I": {
+        "shortDesc": "Set the speed of the controller fan when motors are off.",
+        "optional": true
+      },
+      "R": {
+        "shortDesc": "Reset all settings to defaults. Other parameters can be included to override.",
+        "optional": true
+      },
+      "S": {
+        "shortDesc": "Set the speed of the controller fan when motors are active.",
+        "optional": true
+      }
+    }
+  },
+  "M808": {
+    "shortDesc": "Repeat Marker",
+    "category": "none",
+    "desc": "The Repeat Marker command is used to define regions of a G-code file that will be repeated during SD printing. A marker is first set with M808 L[count], and later in the file a plain M808 command is used count down and loop. (By default up to 10 start markers can be nested.)",
+    "parameters": {
+      "L": {
+        "shortDesc": "Loop counter. Use L or L0 for an infinite loop.",
+        "optional": true
+      }
+    }
+  },
+  "M810": {
+    "shortDesc": "G-code macros",
+    "desc": "Use the M810-M819 commands to set and execute 10 distinct G-code “macros.” Put anything after the command to define its macro. To run the macro just send M810-M819 by itself. Multiple commands in one macro are separated by the pipe character (‘|’).",
+    "parameters": {
+      "s": {
+        "shortDesc": "Set Macro to the given commands, separated by the pipe character.",
+        "optional": true
+      }
+    }
+  },
+  "M811": {
+    "shortDesc": "G-code macros",
+    "desc": "Use the M810-M819 commands to set and execute 10 distinct G-code “macros.” Put anything after the command to define its macro. To run the macro just send M810-M819 by itself. Multiple commands in one macro are separated by the pipe character (‘|’).",
+    "parameters": {
+      "s": {
+        "shortDesc": "Set Macro to the given commands, separated by the pipe character.",
+        "optional": true
+      }
+    }
+  },
+  "M812": {
+    "shortDesc": "G-code macros",
+    "desc": "Use the M810-M819 commands to set and execute 10 distinct G-code “macros.” Put anything after the command to define its macro. To run the macro just send M810-M819 by itself. Multiple commands in one macro are separated by the pipe character (‘|’).",
+    "parameters": {
+      "s": {
+        "shortDesc": "Set Macro to the given commands, separated by the pipe character.",
+        "optional": true
+      }
+    }
+  },
+  "M813": {
+    "shortDesc": "G-code macros",
+    "desc": "Use the M810-M819 commands to set and execute 10 distinct G-code “macros.” Put anything after the command to define its macro. To run the macro just send M810-M819 by itself. Multiple commands in one macro are separated by the pipe character (‘|’).",
+    "parameters": {
+      "s": {
+        "shortDesc": "Set Macro to the given commands, separated by the pipe character.",
+        "optional": true
+      }
+    }
+  },
+  "M814": {
+    "shortDesc": "G-code macros",
+    "desc": "Use the M810-M819 commands to set and execute 10 distinct G-code “macros.” Put anything after the command to define its macro. To run the macro just send M810-M819 by itself. Multiple commands in one macro are separated by the pipe character (‘|’).",
+    "parameters": {
+      "s": {
+        "shortDesc": "Set Macro to the given commands, separated by the pipe character.",
+        "optional": true
+      }
+    }
+  },
+  "M815": {
+    "shortDesc": "G-code macros",
+    "desc": "Use the M810-M819 commands to set and execute 10 distinct G-code “macros.” Put anything after the command to define its macro. To run the macro just send M810-M819 by itself. Multiple commands in one macro are separated by the pipe character (‘|’).",
+    "parameters": {
+      "s": {
+        "shortDesc": "Set Macro to the given commands, separated by the pipe character.",
+        "optional": true
+      }
+    }
+  },
+  "M816": {
+    "shortDesc": "G-code macros",
+    "desc": "Use the M810-M819 commands to set and execute 10 distinct G-code “macros.” Put anything after the command to define its macro. To run the macro just send M810-M819 by itself. Multiple commands in one macro are separated by the pipe character (‘|’).",
+    "parameters": {
+      "s": {
+        "shortDesc": "Set Macro to the given commands, separated by the pipe character.",
+        "optional": true
+      }
+    }
+  },
+  "M817": {
+    "shortDesc": "G-code macros",
+    "desc": "Use the M810-M819 commands to set and execute 10 distinct G-code “macros.” Put anything after the command to define its macro. To run the macro just send M810-M819 by itself. Multiple commands in one macro are separated by the pipe character (‘|’).",
+    "parameters": {
+      "s": {
+        "shortDesc": "Set Macro to the given commands, separated by the pipe character.",
+        "optional": true
+      }
+    }
+  },
+  "M818": {
+    "shortDesc": "G-code macros",
+    "desc": "Use the M810-M819 commands to set and execute 10 distinct G-code “macros.” Put anything after the command to define its macro. To run the macro just send M810-M819 by itself. Multiple commands in one macro are separated by the pipe character (‘|’).",
+    "parameters": {
+      "s": {
+        "shortDesc": "Set Macro to the given commands, separated by the pipe character.",
+        "optional": true
+      }
+    }
+  },
+  "M819": {
+    "shortDesc": "G-code macros",
+    "desc": "Use the M810-M819 commands to set and execute 10 distinct G-code “macros.” Put anything after the command to define its macro. To run the macro just send M810-M819 by itself. Multiple commands in one macro are separated by the pipe character (‘|’).",
+    "parameters": {
+      "s": {
+        "shortDesc": "Set Macro to the given commands, separated by the pipe character.",
+        "optional": true
+      }
+    }
+  },
+  "M851": {
+    "shortDesc": "XYZ Probe Offset",
+    "category": "none",
+    "desc": "Set the XYZ distance from the nozzle to the probe trigger-point.",
+    "parameters": {
+      "X": {
+        "shortDesc": "Z probe X offset",
+        "optional": true
+      },
+      "Y": {
+        "shortDesc": "Z probe Y offset",
+        "optional": true
+      },
+      "Z": {
+        "shortDesc": "Z probe Z offset",
+        "optional": true
+      }
+    }
+  },
+  "M852": {
+    "shortDesc": "Bed Skew Compensation",
+    "category": "calibration",
+    "desc": "Bed Skew Compensation corrects for misalignment in the XY, XZ, and ZY axes through the use of correction factors.",
+    "parameters": {
+      "I": {
+        "shortDesc": "Skew correction factor for XY axis.",
+        "optional": true
+      },
+      "J": {
+        "shortDesc": "Skew correction factor for XZ axis",
+        "optional": true
+      },
+      "K": {
+        "shortDesc": "Skew correction factor for YZ axis",
+        "optional": true
+      },
+      "S": {
+        "shortDesc": "Alias for I when only XY skew correction is enabled",
+        "optional": true
+      }
+    }
+  },
+  "M860": {
+    "shortDesc": "I2C Position Encoders",
+    "category": "encoder",
+    "desc": "I2C position encoders for closed loop control. Developed by Chris Barr at Aus3D. Wiki: https://wiki.aus3d.com.au/Magnetic_Encoder Github: https://github.com/Aus3D/MagneticEncoder",
+    "parameters": {
+      "E": {
+        "shortDesc": "Report on E axis encoder if present. (If A or I not specified)",
+        "optional": true
+      },
+      "I": {
+        "shortDesc": "Module index. [0, I2CPE_ENCODER_CNT - 1]",
+        "optional": true
+      },
+      "O": {
+        "shortDesc": "Include homed zero-offset in returned position",
+        "optional": true
+      },
+      "P": {
+        "shortDesc": "Number of rePeats/iterations. (for M863 only)",
+        "optional": true
+      },
+      "R": {
+        "shortDesc": "Reset error counter. (for M866 only)",
+        "optional": true
+      },
+      "S": {
+        "shortDesc": "Enable/disable error correction. 1 enables, 0 disables. If not supplied, toggle. (for M867 only)",
+        "optional": true
+      },
+      "T": {
+        "shortDesc": "New error correction threshold. (for M868 only)",
+        "optional": true
+      },
+      "U": {
+        "shortDesc": "Units in mm or raw step count. (for M860 only)",
+        "optional": true
+      },
+      "X": {
+        "shortDesc": "Report on X axis encoder if present. (If A or I not specified)",
+        "optional": true
+      },
+      "Y": {
+        "shortDesc": "Report on Y axis encoder if present. (If A or I not specified)",
+        "optional": true
+      },
+      "Z": {
+        "shortDesc": "Report on Z axis encoder if present. (If A or I not specified)",
+        "optional": true
+      }
+    }
+  },
+  "M861": {
+    "shortDesc": "I2C Position Encoders",
+    "category": "encoder",
+    "desc": "I2C position encoders for closed loop control. Developed by Chris Barr at Aus3D. Wiki: https://wiki.aus3d.com.au/Magnetic_Encoder Github: https://github.com/Aus3D/MagneticEncoder",
+    "parameters": {
+      "E": {
+        "shortDesc": "Report on E axis encoder if present. (If A or I not specified)",
+        "optional": true
+      },
+      "I": {
+        "shortDesc": "Module index. [0, I2CPE_ENCODER_CNT - 1]",
+        "optional": true
+      },
+      "O": {
+        "shortDesc": "Include homed zero-offset in returned position",
+        "optional": true
+      },
+      "P": {
+        "shortDesc": "Number of rePeats/iterations. (for M863 only)",
+        "optional": true
+      },
+      "R": {
+        "shortDesc": "Reset error counter. (for M866 only)",
+        "optional": true
+      },
+      "S": {
+        "shortDesc": "Enable/disable error correction. 1 enables, 0 disables. If not supplied, toggle. (for M867 only)",
+        "optional": true
+      },
+      "T": {
+        "shortDesc": "New error correction threshold. (for M868 only)",
+        "optional": true
+      },
+      "U": {
+        "shortDesc": "Units in mm or raw step count. (for M860 only)",
+        "optional": true
+      },
+      "X": {
+        "shortDesc": "Report on X axis encoder if present. (If A or I not specified)",
+        "optional": true
+      },
+      "Y": {
+        "shortDesc": "Report on Y axis encoder if present. (If A or I not specified)",
+        "optional": true
+      },
+      "Z": {
+        "shortDesc": "Report on Z axis encoder if present. (If A or I not specified)",
+        "optional": true
+      }
+    }
+  },
+  "M862": {
+    "shortDesc": "I2C Position Encoders",
+    "category": "encoder",
+    "desc": "I2C position encoders for closed loop control. Developed by Chris Barr at Aus3D. Wiki: https://wiki.aus3d.com.au/Magnetic_Encoder Github: https://github.com/Aus3D/MagneticEncoder",
+    "parameters": {
+      "E": {
+        "shortDesc": "Report on E axis encoder if present. (If A or I not specified)",
+        "optional": true
+      },
+      "I": {
+        "shortDesc": "Module index. [0, I2CPE_ENCODER_CNT - 1]",
+        "optional": true
+      },
+      "O": {
+        "shortDesc": "Include homed zero-offset in returned position",
+        "optional": true
+      },
+      "P": {
+        "shortDesc": "Number of rePeats/iterations. (for M863 only)",
+        "optional": true
+      },
+      "R": {
+        "shortDesc": "Reset error counter. (for M866 only)",
+        "optional": true
+      },
+      "S": {
+        "shortDesc": "Enable/disable error correction. 1 enables, 0 disables. If not supplied, toggle. (for M867 only)",
+        "optional": true
+      },
+      "T": {
+        "shortDesc": "New error correction threshold. (for M868 only)",
+        "optional": true
+      },
+      "U": {
+        "shortDesc": "Units in mm or raw step count. (for M860 only)",
+        "optional": true
+      },
+      "X": {
+        "shortDesc": "Report on X axis encoder if present. (If A or I not specified)",
+        "optional": true
+      },
+      "Y": {
+        "shortDesc": "Report on Y axis encoder if present. (If A or I not specified)",
+        "optional": true
+      },
+      "Z": {
+        "shortDesc": "Report on Z axis encoder if present. (If A or I not specified)",
+        "optional": true
+      }
+    }
+  },
+  "M863": {
+    "shortDesc": "I2C Position Encoders",
+    "category": "encoder",
+    "desc": "I2C position encoders for closed loop control. Developed by Chris Barr at Aus3D. Wiki: https://wiki.aus3d.com.au/Magnetic_Encoder Github: https://github.com/Aus3D/MagneticEncoder",
+    "parameters": {
+      "E": {
+        "shortDesc": "Report on E axis encoder if present. (If A or I not specified)",
+        "optional": true
+      },
+      "I": {
+        "shortDesc": "Module index. [0, I2CPE_ENCODER_CNT - 1]",
+        "optional": true
+      },
+      "O": {
+        "shortDesc": "Include homed zero-offset in returned position",
+        "optional": true
+      },
+      "P": {
+        "shortDesc": "Number of rePeats/iterations. (for M863 only)",
+        "optional": true
+      },
+      "R": {
+        "shortDesc": "Reset error counter. (for M866 only)",
+        "optional": true
+      },
+      "S": {
+        "shortDesc": "Enable/disable error correction. 1 enables, 0 disables. If not supplied, toggle. (for M867 only)",
+        "optional": true
+      },
+      "T": {
+        "shortDesc": "New error correction threshold. (for M868 only)",
+        "optional": true
+      },
+      "U": {
+        "shortDesc": "Units in mm or raw step count. (for M860 only)",
+        "optional": true
+      },
+      "X": {
+        "shortDesc": "Report on X axis encoder if present. (If A or I not specified)",
+        "optional": true
+      },
+      "Y": {
+        "shortDesc": "Report on Y axis encoder if present. (If A or I not specified)",
+        "optional": true
+      },
+      "Z": {
+        "shortDesc": "Report on Z axis encoder if present. (If A or I not specified)",
+        "optional": true
+      }
+    }
+  },
+  "M864": {
+    "shortDesc": "I2C Position Encoders",
+    "category": "encoder",
+    "desc": "I2C position encoders for closed loop control. Developed by Chris Barr at Aus3D. Wiki: https://wiki.aus3d.com.au/Magnetic_Encoder Github: https://github.com/Aus3D/MagneticEncoder",
+    "parameters": {
+      "E": {
+        "shortDesc": "Report on E axis encoder if present. (If A or I not specified)",
+        "optional": true
+      },
+      "I": {
+        "shortDesc": "Module index. [0, I2CPE_ENCODER_CNT - 1]",
+        "optional": true
+      },
+      "O": {
+        "shortDesc": "Include homed zero-offset in returned position",
+        "optional": true
+      },
+      "P": {
+        "shortDesc": "Number of rePeats/iterations. (for M863 only)",
+        "optional": true
+      },
+      "R": {
+        "shortDesc": "Reset error counter. (for M866 only)",
+        "optional": true
+      },
+      "S": {
+        "shortDesc": "Enable/disable error correction. 1 enables, 0 disables. If not supplied, toggle. (for M867 only)",
+        "optional": true
+      },
+      "T": {
+        "shortDesc": "New error correction threshold. (for M868 only)",
+        "optional": true
+      },
+      "U": {
+        "shortDesc": "Units in mm or raw step count. (for M860 only)",
+        "optional": true
+      },
+      "X": {
+        "shortDesc": "Report on X axis encoder if present. (If A or I not specified)",
+        "optional": true
+      },
+      "Y": {
+        "shortDesc": "Report on Y axis encoder if present. (If A or I not specified)",
+        "optional": true
+      },
+      "Z": {
+        "shortDesc": "Report on Z axis encoder if present. (If A or I not specified)",
+        "optional": true
+      }
+    }
+  },
+  "M865": {
+    "shortDesc": "I2C Position Encoders",
+    "category": "encoder",
+    "desc": "I2C position encoders for closed loop control. Developed by Chris Barr at Aus3D. Wiki: https://wiki.aus3d.com.au/Magnetic_Encoder Github: https://github.com/Aus3D/MagneticEncoder",
+    "parameters": {
+      "E": {
+        "shortDesc": "Report on E axis encoder if present. (If A or I not specified)",
+        "optional": true
+      },
+      "I": {
+        "shortDesc": "Module index. [0, I2CPE_ENCODER_CNT - 1]",
+        "optional": true
+      },
+      "O": {
+        "shortDesc": "Include homed zero-offset in returned position",
+        "optional": true
+      },
+      "P": {
+        "shortDesc": "Number of rePeats/iterations. (for M863 only)",
+        "optional": true
+      },
+      "R": {
+        "shortDesc": "Reset error counter. (for M866 only)",
+        "optional": true
+      },
+      "S": {
+        "shortDesc": "Enable/disable error correction. 1 enables, 0 disables. If not supplied, toggle. (for M867 only)",
+        "optional": true
+      },
+      "T": {
+        "shortDesc": "New error correction threshold. (for M868 only)",
+        "optional": true
+      },
+      "U": {
+        "shortDesc": "Units in mm or raw step count. (for M860 only)",
+        "optional": true
+      },
+      "X": {
+        "shortDesc": "Report on X axis encoder if present. (If A or I not specified)",
+        "optional": true
+      },
+      "Y": {
+        "shortDesc": "Report on Y axis encoder if present. (If A or I not specified)",
+        "optional": true
+      },
+      "Z": {
+        "shortDesc": "Report on Z axis encoder if present. (If A or I not specified)",
+        "optional": true
+      }
+    }
+  },
+  "M866": {
+    "shortDesc": "I2C Position Encoders",
+    "category": "encoder",
+    "desc": "I2C position encoders for closed loop control. Developed by Chris Barr at Aus3D. Wiki: https://wiki.aus3d.com.au/Magnetic_Encoder Github: https://github.com/Aus3D/MagneticEncoder",
+    "parameters": {
+      "E": {
+        "shortDesc": "Report on E axis encoder if present. (If A or I not specified)",
+        "optional": true
+      },
+      "I": {
+        "shortDesc": "Module index. [0, I2CPE_ENCODER_CNT - 1]",
+        "optional": true
+      },
+      "O": {
+        "shortDesc": "Include homed zero-offset in returned position",
+        "optional": true
+      },
+      "P": {
+        "shortDesc": "Number of rePeats/iterations. (for M863 only)",
+        "optional": true
+      },
+      "R": {
+        "shortDesc": "Reset error counter. (for M866 only)",
+        "optional": true
+      },
+      "S": {
+        "shortDesc": "Enable/disable error correction. 1 enables, 0 disables. If not supplied, toggle. (for M867 only)",
+        "optional": true
+      },
+      "T": {
+        "shortDesc": "New error correction threshold. (for M868 only)",
+        "optional": true
+      },
+      "U": {
+        "shortDesc": "Units in mm or raw step count. (for M860 only)",
+        "optional": true
+      },
+      "X": {
+        "shortDesc": "Report on X axis encoder if present. (If A or I not specified)",
+        "optional": true
+      },
+      "Y": {
+        "shortDesc": "Report on Y axis encoder if present. (If A or I not specified)",
+        "optional": true
+      },
+      "Z": {
+        "shortDesc": "Report on Z axis encoder if present. (If A or I not specified)",
+        "optional": true
+      }
+    }
+  },
+  "M867": {
+    "shortDesc": "I2C Position Encoders",
+    "category": "encoder",
+    "desc": "I2C position encoders for closed loop control. Developed by Chris Barr at Aus3D. Wiki: https://wiki.aus3d.com.au/Magnetic_Encoder Github: https://github.com/Aus3D/MagneticEncoder",
+    "parameters": {
+      "E": {
+        "shortDesc": "Report on E axis encoder if present. (If A or I not specified)",
+        "optional": true
+      },
+      "I": {
+        "shortDesc": "Module index. [0, I2CPE_ENCODER_CNT - 1]",
+        "optional": true
+      },
+      "O": {
+        "shortDesc": "Include homed zero-offset in returned position",
+        "optional": true
+      },
+      "P": {
+        "shortDesc": "Number of rePeats/iterations. (for M863 only)",
+        "optional": true
+      },
+      "R": {
+        "shortDesc": "Reset error counter. (for M866 only)",
+        "optional": true
+      },
+      "S": {
+        "shortDesc": "Enable/disable error correction. 1 enables, 0 disables. If not supplied, toggle. (for M867 only)",
+        "optional": true
+      },
+      "T": {
+        "shortDesc": "New error correction threshold. (for M868 only)",
+        "optional": true
+      },
+      "U": {
+        "shortDesc": "Units in mm or raw step count. (for M860 only)",
+        "optional": true
+      },
+      "X": {
+        "shortDesc": "Report on X axis encoder if present. (If A or I not specified)",
+        "optional": true
+      },
+      "Y": {
+        "shortDesc": "Report on Y axis encoder if present. (If A or I not specified)",
+        "optional": true
+      },
+      "Z": {
+        "shortDesc": "Report on Z axis encoder if present. (If A or I not specified)",
+        "optional": true
+      }
+    }
+  },
+  "M868": {
+    "shortDesc": "I2C Position Encoders",
+    "category": "encoder",
+    "desc": "I2C position encoders for closed loop control. Developed by Chris Barr at Aus3D. Wiki: https://wiki.aus3d.com.au/Magnetic_Encoder Github: https://github.com/Aus3D/MagneticEncoder",
+    "parameters": {
+      "E": {
+        "shortDesc": "Report on E axis encoder if present. (If A or I not specified)",
+        "optional": true
+      },
+      "I": {
+        "shortDesc": "Module index. [0, I2CPE_ENCODER_CNT - 1]",
+        "optional": true
+      },
+      "O": {
+        "shortDesc": "Include homed zero-offset in returned position",
+        "optional": true
+      },
+      "P": {
+        "shortDesc": "Number of rePeats/iterations. (for M863 only)",
+        "optional": true
+      },
+      "R": {
+        "shortDesc": "Reset error counter. (for M866 only)",
+        "optional": true
+      },
+      "S": {
+        "shortDesc": "Enable/disable error correction. 1 enables, 0 disables. If not supplied, toggle. (for M867 only)",
+        "optional": true
+      },
+      "T": {
+        "shortDesc": "New error correction threshold. (for M868 only)",
+        "optional": true
+      },
+      "U": {
+        "shortDesc": "Units in mm or raw step count. (for M860 only)",
+        "optional": true
+      },
+      "X": {
+        "shortDesc": "Report on X axis encoder if present. (If A or I not specified)",
+        "optional": true
+      },
+      "Y": {
+        "shortDesc": "Report on Y axis encoder if present. (If A or I not specified)",
+        "optional": true
+      },
+      "Z": {
+        "shortDesc": "Report on Z axis encoder if present. (If A or I not specified)",
+        "optional": true
+      }
+    }
+  },
+  "M869": {
+    "shortDesc": "I2C Position Encoders",
+    "category": "encoder",
+    "desc": "I2C position encoders for closed loop control. Developed by Chris Barr at Aus3D. Wiki: https://wiki.aus3d.com.au/Magnetic_Encoder Github: https://github.com/Aus3D/MagneticEncoder",
+    "parameters": {
+      "E": {
+        "shortDesc": "Report on E axis encoder if present. (If A or I not specified)",
+        "optional": true
+      },
+      "I": {
+        "shortDesc": "Module index. [0, I2CPE_ENCODER_CNT - 1]",
+        "optional": true
+      },
+      "O": {
+        "shortDesc": "Include homed zero-offset in returned position",
+        "optional": true
+      },
+      "P": {
+        "shortDesc": "Number of rePeats/iterations. (for M863 only)",
+        "optional": true
+      },
+      "R": {
+        "shortDesc": "Reset error counter. (for M866 only)",
+        "optional": true
+      },
+      "S": {
+        "shortDesc": "Enable/disable error correction. 1 enables, 0 disables. If not supplied, toggle. (for M867 only)",
+        "optional": true
+      },
+      "T": {
+        "shortDesc": "New error correction threshold. (for M868 only)",
+        "optional": true
+      },
+      "U": {
+        "shortDesc": "Units in mm or raw step count. (for M860 only)",
+        "optional": true
+      },
+      "X": {
+        "shortDesc": "Report on X axis encoder if present. (If A or I not specified)",
+        "optional": true
+      },
+      "Y": {
+        "shortDesc": "Report on Y axis encoder if present. (If A or I not specified)",
+        "optional": true
+      },
+      "Z": {
+        "shortDesc": "Report on Z axis encoder if present. (If A or I not specified)",
+        "optional": true
+      }
+    }
+  },
+  "M871": {
+    "shortDesc": "Probe temperature config",
+    "category": "calibration",
+    "desc": "Read/write probe temperature compensation values. Values for bed and/or probe can be calibrated using the G76 command.",
+    "parameters": {
+      "B": {
+        "shortDesc": "Store the value V as the Z adjustment at index I for the Bed.",
+        "optional": true
+      },
+      "E": {
+        "shortDesc": "Store the value V as the Z adjustment at index I for the Extruder.",
+        "optional": true
+      },
+      "I": {
+        "shortDesc": "Index at which to store the given Z adjustment value.",
+        "optional": true
+      },
+      "P": {
+        "shortDesc": "Store the value V as the Z adjustment at index I for the Probe.",
+        "optional": true
+      },
+      "R": {
+        "shortDesc": "Reset all Z adjustment values to factory defaults (zero).",
+        "optional": true
+      },
+      "V": {
+        "shortDesc": "Z adjustment value, in micrometers.",
+        "optional": true
+      }
+    }
+  },
+  "M876": {
+    "shortDesc": "Handle Prompt Response",
+    "category": "hosts",
+    "desc": "Handle responses from the host, such as:",
+    "parameters": {
+      "S": {
+        "shortDesc": "Response to prompt",
+        "optional": false
+      }
+    }
+  },
+  "M900": {
+    "shortDesc": "Linear Advance Factor",
+    "category": "control",
+    "desc": "This command sets and/or reports the Linear Advance K factors.",
+    "parameters": {
+      "K": {
+        "shortDesc": "The K factor to set for the specified extruder. Unchanged if omitted. Set this value higher for more flexible filament or a longer filament path.",
+        "optional": true
+      },
+      "L": {
+        "shortDesc": "Set the second K factor for the specified extruder. Requires EXTRA_LIN_ADVANCE_K. Note that this factor may be inactive and won’t take effect until the next M900 S1.",
+        "optional": true
+      },
+      "S": {
+        "shortDesc": "Select slot and activate the last stored value. Requires EXTRA_LIN_ADVANCE_K.",
+        "optional": true
+      },
+      "T": {
+        "shortDesc": "Extruder to which K, L, and S will apply. Requires EXTRA_LIN_ADVANCE_K.",
+        "optional": true
+      }
+    }
+  },
+  "M906": {
+    "shortDesc": "Stepper Motor Current",
+    "category": "none",
+    "desc": "Set stepper motor currents in milliamps units.",
+    "parameters": {
+      "E": {
+        "shortDesc": "Current for the E0 stepper",
+        "optional": true
+      },
+      "I": {
+        "shortDesc": "Index for multiple steppers. (i.e., I1 for X2, Y2, Z2; I2 for Z3; I3 for Z4).",
+        "optional": false
+      },
+      "T": {
+        "shortDesc": "Index (tool) number for the E axis. If not specified, the E0 extruder.",
+        "optional": true
+      },
+      "X": {
+        "shortDesc": "Current for the X stepper",
+        "optional": true
+      },
+      "Y": {
+        "shortDesc": "Current for the Y stepper",
+        "optional": true
+      },
+      "Z": {
+        "shortDesc": "Current for the Z stepper",
+        "optional": true
+      }
+    }
+  },
+  "M907": {
+    "shortDesc": "Set Motor Current",
+    "category": "control",
+    "desc": "Set digital trimpot motor current using axis codes X, Y, Z, E, plus B and S. The unit used for current depends on the type of stepper driver.",
+    "parameters": {
+      "B": {
+        "shortDesc": "Current for the E1 stepper (Requires DIGIPOTSS_PIN or DIGIPOT_I2C)",
+        "optional": true
+      },
+      "C": {
+        "shortDesc": "Current for the E2 stepper (Requires DIGIPOT_I2C)",
+        "optional": true
+      },
+      "D": {
+        "shortDesc": "Current for the E3 stepper (Requires DIGIPOT_I2C)",
+        "optional": true
+      },
+      "E": {
+        "shortDesc": "Current for the E0 stepper",
+        "optional": true
+      },
+      "S": {
+        "shortDesc": "Set this current on all steppers (Requires DIGIPOTSS_PIN or DAC_STEPPER_CURRENT)",
+        "optional": true
+      },
+      "X": {
+        "shortDesc": "Current for the X stepper (and the Y stepper with MOTOR_CURRENT_PWM_XY)",
+        "optional": true
+      },
+      "Y": {
+        "shortDesc": "Current for the Y stepper (Use X with MOTOR_CURRENT_PWM_XY)",
+        "optional": true
+      },
+      "Z": {
+        "shortDesc": "Current for the Z stepper",
+        "optional": true
+      }
+    }
+  },
+  "M908": {
+    "shortDesc": "Set Trimpot Pins",
+    "category": "control",
+    "desc": "Set the digital trimpot current directly by address/channel/pin index. DAC_STEPPER_CURRENT pertains to the MCP4728.",
+    "parameters": {
+      "P": {
+        "shortDesc": "Pin (i.e., Address, Channel)",
+        "optional": false
+      },
+      "S": {
+        "shortDesc": "Current value",
+        "optional": false
+      }
+    }
+  },
+  "M909": {
+    "shortDesc": "DAC Print Values",
+    "category": "control",
+    "desc": "Print the DAC stepper current values in the format “% (Amps)”.",
+    "parameters": {}
+  },
+  "M910": {
+    "shortDesc": "Commit DAC to EEPROM",
+    "category": "control",
+    "desc": "Commit digipot/DAC value to external EEPROM via I2C.",
+    "parameters": {}
+  },
+  "M911": {
+    "shortDesc": "TMC OT Pre-Warn Condition",
+    "category": "trinamic",
+    "desc": "Report the TMC stepper driver overtemperature pre-warn condition to the host.",
+    "parameters": {}
+  },
+  "M912": {
+    "shortDesc": "Clear TMC OT Pre-Warn",
+    "category": "control",
+    "desc": "Clear the stepper driver overtemperature pre-warn condition flag.",
+    "parameters": {
+      "E": {
+        "shortDesc": "Clear all or one E stepper driver Over Temperature Pre-warn flag.",
+        "optional": true
+      },
+      "I": {
+        "shortDesc": "Stepper number to set. If omitted, all specified axes.",
+        "optional": true
+      },
+      "X": {
+        "shortDesc": "Clear X and/or X2 stepper driver Over Temperature Pre-warn flag.",
+        "optional": true
+      },
+      "Y": {
+        "shortDesc": "Clear Y and/or Y2 stepper driver Over Temperature Pre-warn flag.",
+        "optional": true
+      },
+      "Z": {
+        "shortDesc": "Clear Z and/or Z2 and/or Z3 stepper driver Over Temperature Pre-warn flag.",
+        "optional": true
+      }
+    }
+  },
+  "M913": {
+    "shortDesc": "Set Hybrid Threshold Speed",
+    "category": "control",
+    "desc": "When HYBRID_THRESHOLD is enabled, the TMC driver is switched from the quieter StealthChop to spreadCycle when the feed rate for a given stepper motor is over its _HYBRID_THRESHOLD.",
+    "parameters": {
+      "E": {
+        "shortDesc": "Set Hybrid Threshold for E to the given value.",
+        "optional": true
+      },
+      "I": {
+        "shortDesc": "Index for multiple steppers. (i.e., I1 for X2, Y2, Z2; I2 for Z3; I3 for Z4).",
+        "optional": true
+      },
+      "T": {
+        "shortDesc": "Index (tool) number for the E axis. If not specified, the E0 extruder.",
+        "optional": true
+      },
+      "X": {
+        "shortDesc": "Set Hybrid Threshold for X to the given value.",
+        "optional": true
+      },
+      "Y": {
+        "shortDesc": "Set Hybrid Threshold for Y to the given value.",
+        "optional": true
+      },
+      "Z": {
+        "shortDesc": "Set Hybrid Threshold for Z to the given value.",
+        "optional": true
+      }
+    }
+  },
+  "M914": {
+    "shortDesc": "TMC Bump Sensitivity",
+    "category": "trinamic",
+    "desc": "Some TMC stepper drivers can detect when they bump into something that causes them to stop moving. This feature is so sensitive that it can actually take the place of traditional endstops. Use this command to set the bump sensitivity for the X, Y, and Z stepper drivers.",
+    "parameters": {
+      "I": {
+        "shortDesc": "Index for multiple steppers. (i.e., I1 for X2, Y2, Z2; I2 for Z3; I3 for Z4).",
+        "optional": true
+      },
+      "X": {
+        "shortDesc": "Sensitivity of the X stepper driver.",
+        "optional": true
+      },
+      "Y": {
+        "shortDesc": "Sensitivity of the Y stepper driver.",
+        "optional": true
+      },
+      "Z": {
+        "shortDesc": "Sensitivity of the Z stepper driver.",
+        "optional": true
+      }
+    }
+  },
+  "M915": {
+    "shortDesc": "TMC Z axis calibration",
+    "category": "control",
+    "desc": "The command aims to align the ends of the X gantry (for a Průša i3-style printer). See the video demonstration above.",
+    "parameters": {
+      "S": {
+        "shortDesc": "Current value to use for the raise move. (Default: CALIBRATION_CURRENT)",
+        "optional": true
+      },
+      "Z": {
+        "shortDesc": "Extra distance past Z_MAX_POS to move the Z axis. (Default: CALIBRATION_EXTRA_HEIGHT)",
+        "optional": true
+      }
+    }
+  },
+  "M916": {
+    "shortDesc": "L6474 Thermal Warning Test",
+    "category": "L6474",
+    "desc": "M916: increase KVAL_HOLD until thermal warning. This routine is also useful for determining the approximate KVAL_HOLD where the stepper stops losing steps. The sound will get noticeably quieter as it stops losing steps.",
+    "parameters": {
+      "D": {
+        "shortDesc": "Time (in seconds) to run each setting of KVAL_HOLD/TVAL. (Default zero, to run each setting once.)",
+        "optional": true
+      },
+      "E": {
+        "shortDesc": "Monitor E with the given displacement (1 - 255mm) on either side of the current position.",
+        "optional": true
+      },
+      "F": {
+        "shortDesc": "Feedrate for the moves. (Default max feedrate if unspecified.)",
+        "optional": true
+      },
+      "J": {
+        "shortDesc": "Select which driver(s) to monitor on multi-driver axis",
+        "optional": true
+      },
+      "K": {
+        "shortDesc": "Value for KVAL_HOLD (0 - 255) (ignored for L6474). If unspecified, report current value from driver.",
+        "optional": true
+      },
+      "T": {
+        "shortDesc": "Current (mA) setting for TVAL (0 - 4A in 31.25mA increments, rounds down) - L6474 only. If unspecified, report current value from driver.",
+        "optional": true
+      },
+      "X": {
+        "shortDesc": "Monitor X with the given displacement (1 - 255mm) on either side of the current position.",
+        "optional": true
+      },
+      "Y": {
+        "shortDesc": "Monitor Y with the given displacement (1 - 255mm) on either side of the current position.",
+        "optional": true
+      },
+      "Z": {
+        "shortDesc": "Monitor Z with the given displacement (1 - 255mm) on either side of the current position.",
+        "optional": true
+      }
+    }
+  },
+  "M917": {
+    "shortDesc": "L6474 Overcurrent Warning Test",
+    "category": "L6474",
+    "desc": "The M917 command runs a test procedure to find the minimum stepper current thresholds.",
+    "parameters": {
+      "E": {
+        "shortDesc": "Monitor E with the given displacement (1 - 255mm) on either side of the current position.",
+        "optional": true
+      },
+      "F": {
+        "shortDesc": "Feedrate for the moves. If unspecified, uses the max feedrate.",
+        "optional": true
+      },
+      "I": {
+        "shortDesc": "Starting overcurrent threshold. Report current value from driver if not specified. If there are multiple drivers on the axis then all will be set the same.",
+        "optional": true
+      },
+      "J": {
+        "shortDesc": "Select which driver(s) to monitor on multi-driver axis.",
+        "optional": true
+      },
+      "K": {
+        "shortDesc": "Value for KVAL_HOLD (0 - 255) (ignored for L6474). Report current value from driver if not specified",
+        "optional": true
+      },
+      "T": {
+        "shortDesc": "Current (mA) setting for TVAL (0 - 4A in 31.25mA increments, rounds down) - L6474 only. Report current value from driver if not specified.",
+        "optional": true
+      },
+      "X": {
+        "shortDesc": "Monitor X with the given displacement (1 - 255mm) on either side of the current position.",
+        "optional": true
+      },
+      "Y": {
+        "shortDesc": "Monitor Y with the given displacement (1 - 255mm) on either side of the current position.",
+        "optional": true
+      },
+      "Z": {
+        "shortDesc": "Monitor Z with the given displacement (1 - 255mm) on either side of the current position.",
+        "optional": true
+      }
+    }
+  },
+  "M918": {
+    "shortDesc": "L6474 Speed Warning Test",
+    "category": "L6474",
+    "desc": "M918: Increase speed until error or max feedrate achieved.",
+    "parameters": {
+      "E": {
+        "shortDesc": "Monitor E with the given displacement (1 - 255mm) on either side of the current position.",
+        "optional": true
+      },
+      "I": {
+        "shortDesc": "Overcurrent threshold. Report current value from driver if not specified.",
+        "optional": true
+      },
+      "J": {
+        "shortDesc": "Select which driver(s) to monitor on a multi-driver axis.",
+        "optional": true
+      },
+      "K": {
+        "shortDesc": "Value for KVAL_HOLD (0 - 255) (ignored for L6474). Report current value from driver if not specified.",
+        "optional": true
+      },
+      "M": {
+        "shortDesc": "Value for microsteps (1 - 128). Report current value from driver if not specified.",
+        "optional": true
+      },
+      "T": {
+        "shortDesc": "Current (mA) setting for TVAL (0 - 4A in 31.25mA increments, rounds down) - L6474 only. Report current value from driver if not specified.",
+        "optional": true
+      },
+      "X": {
+        "shortDesc": "Monitor X with the given displacement (1 - 255mm) on either side of the current position.",
+        "optional": true
+      },
+      "Y": {
+        "shortDesc": "Monitor Y with the given displacement (1 - 255mm) on either side of the current position.",
+        "optional": true
+      },
+      "Z": {
+        "shortDesc": "Monitor Z with the given displacement (1 - 255mm) on either side of the current position.",
+        "optional": true
+      }
+    }
+  },
+  "M919": {
+    "shortDesc": "TMC Chopper Timing",
+    "category": "trinamic",
+    "desc": "Set / report the TMC Chopper Timing values for one or more stepper drivers.",
+    "parameters": {
+      "A": {
+        "shortDesc": "Apply the given chopper timing to the A stepper. (Requires 4 or more axes.)",
+        "optional": true
+      },
+      "B": {
+        "shortDesc": "Apply the given chopper timing to the B stepper. (Requires 5 or more axes.)",
+        "optional": true
+      },
+      "C": {
+        "shortDesc": "Apply the given chopper timing to the C stepper. (Requires 6 or more axes.)",
+        "optional": true
+      },
+      "I": {
+        "shortDesc": "Index for multiple steppers. (i.e., I1 for X2, Y2, Z2; I2 for Z3; I3 for Z4). If omitted, all steppers for the selected axes.",
+        "optional": true
+      },
+      "O": {
+        "shortDesc": "Time-Off value (1..15). If omitted, use configured defaults for the axes.",
+        "optional": true
+      },
+      "P": {
+        "shortDesc": "Hysteresis End value (-3..12). If omitted, use configured defaults for the axes.",
+        "optional": true
+      },
+      "S": {
+        "shortDesc": "Hysteresis Start value (1..8). If omitted, use configured defaults for the axes.",
+        "optional": true
+      },
+      "T": {
+        "shortDesc": "Index (tool) number for the E axis. If omitted, all extruders.",
+        "optional": true
+      },
+      "U": {
+        "shortDesc": "Apply the given chopper timing to the U stepper. (Requires 7 or more axes.)",
+        "optional": true
+      },
+      "V": {
+        "shortDesc": "Apply the given chopper timing to the V stepper. (Requires 8 or more axes.)",
+        "optional": true
+      },
+      "W": {
+        "shortDesc": "Apply the given chopper timing to the W stepper. (Requires 9 axes.)",
+        "optional": true
+      },
+      "X": {
+        "shortDesc": "Apply the given chopper timing to the X stepper(s).",
+        "optional": true
+      },
+      "Y": {
+        "shortDesc": "Apply the given chopper timing to the Y stepper(s). (Requires 2 or more axes.)",
+        "optional": true
+      },
+      "Z": {
+        "shortDesc": "Apply the given chopper timing to the Z stepper(s). (Requires 3 or more axes.)",
+        "optional": true
+      }
+    }
+  },
+  "M928": {
+    "shortDesc": "Start SD Logging",
+    "category": "sdcard",
+    "desc": "Use this command to start logging all console and host input to an SD file while still operating the machine.",
+    "parameters": {
+      "f": {
+        "shortDesc": "File name of log file",
+        "optional": false
+      }
+    }
+  },
+  "M951": {
+    "shortDesc": "Magnetic Parking Extruder",
+    "category": "calibration",
+    "desc": "Set MAGNETIC_PARKING_EXTRUDER settings. With no parameters, report the current settings.",
+    "parameters": {
+      "C": {
+        "shortDesc": "Set compensation factor. (Default MPE_COMPENSATION)",
+        "optional": true
+      },
+      "D": {
+        "shortDesc": "Set travel feedrate. (Default MPE_TRAVEL_DISTANCE)",
+        "optional": true
+      },
+      "H": {
+        "shortDesc": "Set fast feedrate. (Default MPE_FAST_SPEED)",
+        "optional": true
+      },
+      "I": {
+        "shortDesc": "Set grab distance. (Default PARKING_EXTRUDER_GRAB_DISTANCE)",
+        "optional": true
+      },
+      "J": {
+        "shortDesc": "Set slow feedrate. (Default MPE_SLOW_SPEED)",
+        "optional": true
+      },
+      "L": {
+        "shortDesc": "Set X[0] position. (Default PARKING_EXTRUDER_PARKING_X)",
+        "optional": true
+      },
+      "R": {
+        "shortDesc": "Set X[1] position. (Default PARKING_EXTRUDER_PARKING_X)",
+        "optional": true
+      }
+    }
+  },
+  "M993": {
+    "shortDesc": "SD / SPI Flash",
+    "category": "sdcard",
+    "desc": "M993: backup SPI Flash to SD M994: load a backup from SD to SPI Flash",
+    "parameters": {}
+  },
+  "M994": {
+    "shortDesc": "SD / SPI Flash",
+    "category": "sdcard",
+    "desc": "M993: backup SPI Flash to SD M994: load a backup from SD to SPI Flash",
+    "parameters": {}
+  },
+  "M995": {
+    "shortDesc": "Touch Screen Calibration",
+    "category": "calibration",
+    "desc": "Trigger touch screen calibration menu on display",
+    "parameters": {}
+  },
+  "M997": {
+    "shortDesc": "Firmware update",
+    "category": "control",
+    "desc": "Can be used to trigger a firmware update from the SD card after the firmware binary has been uploaded remotely.",
+    "parameters": {}
+  },
+  "M999": {
+    "shortDesc": "STOP Restart",
+    "category": "control",
+    "desc": "If a STOP occurs you can use M999 to restart the “stopped” machine after resolving the issue.",
+    "parameters": {
+      "S": {
+        "shortDesc": "Resume without flushing the command buffer. The default behavior is to flush the serial buffer and request a resend to the host starting on the last N line received.",
+        "optional": false
+      }
+    }
+  },
+  "M7219": {
+    "shortDesc": "MAX7219 Control",
+    "category": "debug",
+    "desc": "Set the state of one or more Max7219 matrix displays or 7-segment digital displays.",
+    "parameters": {
+      "C": {
+        "shortDesc": "Set the column specified by C to bit pattern V.",
+        "optional": true
+      },
+      "D": {
+        "shortDesc": "Directly set a Max7219 native row (on the unit specified by U) to the 8-bit pattern V.",
+        "optional": true
+      },
+      "F": {
+        "shortDesc": "Fill the matrix by turning on all LEDs.",
+        "optional": true
+      },
+      "I": {
+        "shortDesc": "Initialize (clear) all matrixes.",
+        "optional": true
+      },
+      "P": {
+        "shortDesc": "Print the LED array state for debugging.",
+        "optional": true
+      },
+      "R": {
+        "shortDesc": "Set the row specified by R to bit pattern V.",
+        "optional": true
+      },
+      "U": {
+        "shortDesc": "Used with D to specify which matrix unit to set.",
+        "optional": true
+      },
+      "V": {
+        "shortDesc": "Value to apply when using the C, R, or X/Y parameters.",
+        "optional": true
+      },
+      "X": {
+        "shortDesc": "Set a matrix LED at the given X position to the V value. If no V is given, toggle the LED state.",
+        "optional": true
+      },
+      "Y": {
+        "shortDesc": "Set a matrix LED at the given Y position to the V value. If no V is given, toggle the LED state.",
+        "optional": true
+      }
+    }
+  },
+  "T00": {
+    "shortDesc": "Select Tool",
+    "category": "control",
+    "desc": "T0, T1, etc. switches to the respective physical/virtual tool head. See Universal Tool Change Settings in Configuration_adv.h for more details.",
+    "parameters": {}
+  },
+  "T01": {
+    "shortDesc": "Select Tool",
+    "category": "control",
+    "desc": "T0, T1, etc. switches to the respective physical/virtual tool head. See Universal Tool Change Settings in Configuration_adv.h for more details.",
+    "parameters": {}
+  },
+  "T02": {
+    "shortDesc": "Select Tool",
+    "category": "control",
+    "desc": "T0, T1, etc. switches to the respective physical/virtual tool head. See Universal Tool Change Settings in Configuration_adv.h for more details.",
+    "parameters": {}
+  },
+  "T03": {
+    "shortDesc": "Select Tool",
+    "category": "control",
+    "desc": "T0, T1, etc. switches to the respective physical/virtual tool head. See Universal Tool Change Settings in Configuration_adv.h for more details.",
+    "parameters": {}
+  },
+  "T04": {
+    "shortDesc": "Select Tool",
+    "category": "control",
+    "desc": "T0, T1, etc. switches to the respective physical/virtual tool head. See Universal Tool Change Settings in Configuration_adv.h for more details.",
+    "parameters": {}
+  },
+  "T05": {
+    "shortDesc": "Select Tool",
+    "category": "control",
+    "desc": "T0, T1, etc. switches to the respective physical/virtual tool head. See Universal Tool Change Settings in Configuration_adv.h for more details.",
+    "parameters": {}
+  },
+  "T06": {
+    "shortDesc": "Select Tool",
+    "category": "control",
+    "desc": "T0, T1, etc. switches to the respective physical/virtual tool head. See Universal Tool Change Settings in Configuration_adv.h for more details.",
+    "parameters": {}
+  }
 }
