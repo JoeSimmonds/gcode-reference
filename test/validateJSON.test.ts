@@ -5,13 +5,13 @@
  * -------------------------------------------------------------------------------------------- */
 'use strict';
 
-import { expect } from 'chai';
-import Ajv from 'ajv/dist/2020';
-import fs from 'fs';
-import path from 'path';
-import { CodeTypes, MachineTypes } from '../src';
-import { cncCodesJSONSchema } from '@appliedengdesign/cnccodes-json-schema';
-import { constants } from '../src/util/constants';
+import { cncCodesJSONSchema } from "@appliedengdesign/cnccodes-json-schema";
+import Ajv from "ajv/dist/2020";
+import { expect } from "chai";
+import fs from "fs";
+import path from "path";
+import { CodeTypes, MachineTypes } from "../src";
+import { constants } from "../src/util/constants";
 
 const jpath = path.join(__dirname, '..', 'src', 'json');
 
@@ -31,9 +31,10 @@ function _validate(type: MachineTypes | string, file: string): void {
     });
 }
 
-function _variants(type: MachineTypes | string): void {
+function _variants(type: MachineTypes | string, codeType?: CodeTypes | string): void {
     if (process.env.VARIANTS !== 'no' || process.env.VARIANTS === undefined) {
-        const variants = fs.readdirSync(path.join(jpath, type, 'variants'));
+        const predicate = (f: string) => codeType === undefined || f.startsWith(codeType[0]);
+        const variants = fs.readdirSync(path.join(jpath, type, 'variants')).filter(predicate);
         describe('variants...', () => {
             variants.forEach(variant => {
                 if (fs.statSync(path.join(jpath, type, 'variants', variant)).isDirectory() || /^\..*/.test(variant)) {
@@ -59,6 +60,7 @@ describe('Validating JSON...', () => {
                 return;
             }
             _validate(type[0], `${type[1][0]}${constants.jsonExt}`);
+            _variants(type[0], type[1]);
         } else {
             // Validate both G / M code files for type
             Object.values(CodeTypes).forEach(codeType => {

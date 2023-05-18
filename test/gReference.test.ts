@@ -107,14 +107,6 @@ describe('GReference Object', () => {
             });
         });
 
-        /*
-            category: Category;
-    modal?: boolean;
-    shortDesc: string;
-    desc?: string;
-    parameters: Parameters;
-    */
-
         describe('Verifying Marlin code loading...', () => {
             it('returns the correct code for a newly defined code', () => {
                 const g = new GReference();
